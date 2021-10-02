@@ -13,7 +13,7 @@ const Input = styled.input<iInput>`
   font-size: 15px;
   font-weight: bold;
 
-  border-radius: 25px;
+  border-radius: 10px;
   background: var(--background);
   color: var(--white);
 

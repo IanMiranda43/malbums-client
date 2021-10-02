@@ -1,13 +1,13 @@
 import React from 'react';
 
-import InputsCard from 'components/InputsCard';
+import LoginCard from 'components/LoginCard';
 import Input from 'components/Input';
 import { Container } from './styles';
 
 const Login: React.FC = () => {
   return (
     <Container>
-      <InputsCard
+      <LoginCard
         title="Create your account"
         formAction="/register"
         formMethod="POST"
@@ -19,7 +19,7 @@ const Login: React.FC = () => {
         <Input type="password" placeholder="Type an password" />
 
         <Input type="password" placeholder="Confirm password" />
-      </InputsCard>
+      </LoginCard>
     </Container>
   );
 };
