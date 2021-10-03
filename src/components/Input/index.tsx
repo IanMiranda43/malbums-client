@@ -16,6 +16,7 @@ const Input = styled.input<iInput>`
   border-radius: 10px;
   background: var(--background);
   color: var(--white);
+  border: 2px solid transparent;
 
   &:hover {
     background: var(--light-gray);
@@ -23,6 +24,10 @@ const Input = styled.input<iInput>`
 
   &:active {
     opacity: 0.8;
+  }
+
+  &:focus {
+    border: 2px solid var(--primary);
   }
 `;
 

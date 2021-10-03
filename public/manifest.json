@@ -1,6 +1,6 @@
 {
-  "short_name": "My Malbums",
-  "name": "My music albums",
+  "short_name": "Malbums",
+  "name": "Music albums",
   "icons": [
     {
       "src": "favicon.ico",
