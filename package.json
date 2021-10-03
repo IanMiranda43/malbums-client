@@ -1,5 +1,5 @@
 {
-  "name": "my-malbums-client",
+  "name": "malbums-client",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
