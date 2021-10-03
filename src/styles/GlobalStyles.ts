@@ -8,7 +8,7 @@ export default createGlobalStyle`
 		--gray: #7A7A7A;
 		--outline: #2F3336;
 		--green: #00C06B;
-		--like: #E8265E;
+		--danger: #E8265E;
 		--primary: #FF7A00;
 		--primary-hover: #ff8b21;
 		--dark-hover: #642801;

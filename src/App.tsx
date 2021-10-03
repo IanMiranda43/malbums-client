@@ -8,7 +8,7 @@ import Login from 'pages/Login';
 function App() {
   return (
     <BrowserRouter>
-      <Route path="/" exact component={Login} />
+      <Route path="/" component={Login} />
 
       <GlobalStyles />
     </BrowserRouter>

@@ -7,8 +7,8 @@ interface iInput {
 const Input = styled.input<iInput>`
   display: flex;
   align-items: center;
+  width: 100%;
   padding: 12px 20px;
-  margin-bottom: 10px;
 
   font-size: 15px;
   font-weight: bold;
@@ -22,7 +22,7 @@ const Input = styled.input<iInput>`
   }
 
   &:active {
-    opacity: 0.9;
+    opacity: 0.8;
   }
 `;
 

@@ -1,13 +1,13 @@
 
 <h1 align="center"> 
-	my-malbums-client
+	malbums-client
 </h1>
 
 ### Access running project on Vercel [ianmiranda-twitter-clone.vercel.app](https://ianmiranda-twitter-clone.vercel.app/)
 
 <br>
 
-Developed with React JS, `my-malbums-client` it's a music albums management system. Is developed with the mobile first principle so, it's responsively adapted to any screen size. Create your account and start to manage the albums that you like by adding and listing your albums records. `my-malbums` means 'my music albums', it's simple but sufficient for this project. 
+Developed with React JS, `malbums-client` it's a music albums management system. Is developed with the mobile first principle so, it's responsively adapted to any screen size. Create your account and start to manage the albums that you like by adding and listing your albums records. Malbums means 'music albums', it's simple but sufficient for this project. 
 
 ### The system use: 
 * `styled-components` for develop with CSS in JS
@@ -40,7 +40,7 @@ The system is configured to a better code style with development tools like `Esl
 Clone this repository by running:
 
 ```bash
-git clone git@github.com:IanMiranda43/my-malbums-client.git
+git clone git@github.com:IanMiranda43/malbums-client.git
 ```
 
 ### Installing the dependencies:
