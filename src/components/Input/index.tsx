@@ -21,13 +21,14 @@ const Input = styled.input<iInput>`
   &:hover {
     background: var(--background-hover);
   }
-
   &:active {
     opacity: 0.8;
   }
-
   &:focus {
     border: 2px solid var(--primary);
+  }
+  &.error {
+    border: 2px solid var(--danger);
   }
 `;
 

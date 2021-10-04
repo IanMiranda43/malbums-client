@@ -6,7 +6,7 @@ import { Container, InputError } from './styles';
 
 interface iInputGroup {
   id: string;
-  errorLabelId: string;
+  errorLabelId?: string;
   errorMessage?: string;
   type?: string;
   placeholder?: string;

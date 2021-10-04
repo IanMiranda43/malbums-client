@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FormEvent, ReactNode } from 'react';
 
 import Button from 'components/Button';
 
@@ -11,23 +11,59 @@ import {
   FormError,
   Buttons,
 } from './styles';
+import { useAuthContext } from 'contexts/AuthContext';
+import { useHistory } from 'react-router-dom';
 
 interface iAuthCard {
+  children: ReactNode;
   title: string;
   formAction: string;
   backButton: string;
   submitButton: string;
-  formErrorMessage?: string;
 }
 
-const AuthCard: React.FC<iAuthCard> = ({
+function AuthCard({
   children,
   title,
   formAction,
   backButton,
   submitButton,
-  formErrorMessage,
-}) => {
+}: iAuthCard) {
+  const AuthRequest = useAuthContext();
+  const history = useHistory();
+  const { formError } = useAuthContext();
+
+  function handleSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+
+    if (formAction === '/register') {
+      const passwordInput = document.getElementById(
+        'inputPassword',
+      ) as HTMLInputElement;
+      const confirmPasswordInput = document.getElementById(
+        'inputConfirmPassword',
+      ) as HTMLInputElement;
+
+      if (passwordInput?.value !== confirmPasswordInput?.value) {
+        passwordInput.classList.add('error');
+        confirmPasswordInput.classList.add('error');
+        return AuthRequest.setFormError('Passwords need to match');
+      }
+
+      passwordInput.classList.remove('error');
+      confirmPasswordInput.classList.remove('error');
+      AuthRequest.setFormError('');
+    }
+  }
+
+  function handleButton() {
+    if (backButton === 'Register') {
+      history.push('/register');
+    } else {
+      history.push('/login');
+    }
+  }
+
   return (
     <Container>
       <Wrapper>
@@ -35,17 +71,21 @@ const AuthCard: React.FC<iAuthCard> = ({
           <h2>{title}</h2>
         </Title>
 
-        <Form action={formAction} autoComplete="off">
+        <Form
+          action={formAction}
+          autoComplete="off"
+          onSubmit={(e) => handleSubmit(e)}
+        >
           <Inputs>
             {children}
 
-            <FormError className={formErrorMessage ? 'active' : ''}>
-              {formErrorMessage}
+            <FormError className={formError ? 'active' : ''}>
+              {formError}
             </FormError>
           </Inputs>
 
           <Buttons>
-            <Button type="button" outlined>
+            <Button type="button" outlined onClick={handleButton}>
               {backButton}
             </Button>
             <Button type="submit">{submitButton}</Button>
@@ -54,6 +94,6 @@ const AuthCard: React.FC<iAuthCard> = ({
       </Wrapper>
     </Container>
   );
-};
+}
 
 export default AuthCard;

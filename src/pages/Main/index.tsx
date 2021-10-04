@@ -2,8 +2,12 @@ import React from 'react';
 
 // import { Container } from './styles';
 
-const Main: React.FC = () => {
-  return <div />;
-};
+function Main() {
+  return (
+    <div>
+      <h1>Main page</h1>
+    </div>
+  );
+}
 
 export default Main;
