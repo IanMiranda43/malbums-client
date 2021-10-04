@@ -2,16 +2,16 @@ import { createGlobalStyle } from 'styled-components';
 
 export default createGlobalStyle`
   :root {
+		--primary: #FF7A00;
+		--primary-hover: #ff8b21;
+		--secondary: #642801;
 		--background: #1a1a1a;
-		--light-gray: #202327;
+		--background-hover: #202327;
 		--white: #D9D9D9;
 		--gray: #7A7A7A;
 		--outline: #2F3336;
 		--green: #00C06B;
-		--danger: #E8265E;
-		--primary: #FF7A00;
-		--primary-hover: #ff8b21;
-		--dark-hover: #642801;
+    --danger: #E8265E;
 	}
 
   * {

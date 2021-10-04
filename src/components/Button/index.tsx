@@ -21,7 +21,7 @@ const Button = styled.button<iButton>`
 
   &:hover {
     background: ${(props) =>
-      props.outlined ? 'var(--dark-hover)' : 'var(--primary-hover)'};
+      props.outlined ? 'var(--background-hover)' : 'var(--primary-hover)'};
   }
 
   &:active {

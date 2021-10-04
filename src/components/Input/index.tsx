@@ -19,7 +19,7 @@ const Input = styled.input<iInput>`
   border: 2px solid transparent;
 
   &:hover {
-    background: var(--light-gray);
+    background: var(--background-hover);
   }
 
   &:active {
