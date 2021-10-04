@@ -5,12 +5,7 @@ import InputGroup from 'components/InputGroup';
 
 function Login() {
   return (
-    <AuthCard
-      title="Sign in to your Malbums account"
-      formAction="/login"
-      backButton="Register"
-      submitButton="Sign in"
-    >
+    <AuthCard title="Sign in to your Malbums account">
       <InputGroup type="email" id="inputEmail" placeholder="Type your email" />
 
       <InputGroup
