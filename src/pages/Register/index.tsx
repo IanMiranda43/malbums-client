@@ -6,20 +6,41 @@ import InputGroup from 'components/InputGroup';
 function Register() {
   return (
     <AuthCard title="Create your Malbums account" registerPage>
-      <InputGroup id="inputName" placeholder="Type your Name" />
-
-      <InputGroup type="email" id="inputEmail" placeholder="Type your email" />
-
       <InputGroup
-        type="password"
-        id="inputPassword"
-        placeholder="Type an password"
+        input={{
+          id: 'inputName',
+          name: 'username',
+          placeholder: 'Type your Name',
+        }}
       />
 
       <InputGroup
-        type="password"
-        id="inputConfirmPassword"
-        placeholder="Type the same password again"
+        input={{
+          type: 'email',
+          id: 'inputEmail',
+          name: 'email',
+          placeholder: 'Type your email',
+        }}
+      />
+
+      <InputGroup
+        input={{
+          type: 'password',
+          id: 'inputPassword',
+          name: 'password',
+          placeholder: 'Type an password',
+          minLength: 8,
+        }}
+      />
+
+      <InputGroup
+        input={{
+          type: 'password',
+          id: 'inputConfirmPassword',
+          name: 'confirmPassword',
+          placeholder: 'Type the same password again',
+          minLength: 8,
+        }}
       />
     </AuthCard>
   );

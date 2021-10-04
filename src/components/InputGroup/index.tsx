@@ -5,30 +5,30 @@ import Input from 'components/Input';
 import { Container, InputError } from './styles';
 
 interface iInputGroup {
-  id: string;
-  errorLabelId?: string;
-  errorMessage?: string;
-  type?: string;
-  placeholder?: string;
+  input: {
+    type?: string;
+    id: string;
+    name: string;
+    placeholder?: string;
+    minLength?: number;
+  };
+  errorLabel?: {
+    errorLabelId: string;
+    errorMessage: string;
+  };
 }
 
-function InputGroup({
-  id,
-  errorLabelId,
-  errorMessage,
-  type,
-  placeholder,
-}: iInputGroup) {
+function InputGroup({ input, errorLabel }: iInputGroup) {
   return (
     <Container>
-      <Input type={type} id={id} placeholder={placeholder} required />
+      <Input {...input} required />
 
       <InputError
-        id={errorLabelId}
-        htmlFor={id}
-        className={errorMessage ? 'active' : ''}
+        id={errorLabel?.errorLabelId}
+        htmlFor={input.id}
+        className={errorLabel ? 'active' : ''}
       >
-        {errorMessage}
+        {errorLabel?.errorMessage}
       </InputError>
     </Container>
   );

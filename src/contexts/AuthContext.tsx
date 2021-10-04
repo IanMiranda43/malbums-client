@@ -1,65 +1,69 @@
-import React, {
-  createContext,
-  Dispatch,
-  SetStateAction,
-  useContext,
-  useEffect,
-  useState,
-} from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
-export interface iUser {
-  name?: string;
+import { AuthRequestContext } from './AuthRequestContext';
+
+export interface iUserRequest {
+  username?: string;
   email: string;
   password: string;
   confirmPassword?: string;
 }
 
-interface iAuthContext {
-  formError?: string;
-  setFormError: Dispatch<SetStateAction<string>> | any;
-  handleLogin: (userData: iUser) => Promise<void>;
+type iUser = iUserRequest;
+
+export const AuthContext = createContext(
+  {} as {
+    handleSingIn: (userData: iUserRequest) => Promise<void>;
+  },
+);
+
+function checkLocalStorageUser() {
+  const storedUser = localStorage.getItem('user');
+
+  if (storedUser) return JSON.parse(storedUser);
+
+  return {} as iUser;
 }
 
-const AuthContext = createContext({} as iAuthContext);
-
-export const useAuthContext = () => useContext(AuthContext);
-
 export const AuthContextProvider: React.FC = ({ children }) => {
+  const [userStored, setUserStored] = useState<iUser>(checkLocalStorageUser);
+  const { setFormError } = useContext(AuthRequestContext);
   const history = useHistory();
-  const [auth, setAuth] = useState<boolean>(false);
-  const [formError, setFormError] = useState<string>();
 
   useEffect(() => {
+    localStorage.setItem('user', JSON.stringify(userStored));
+  }, [userStored]);
+
+  useEffect(() => {
+    const { pathname } = history.location;
+
     if (
-      history.location.pathname !== '/register' &&
-      history.location.pathname !== '/login'
+      !('email' in userStored) &&
+      pathname !== '/register' &&
+      pathname !== '/login'
     ) {
-      if (!auth) {
-        history.push('/login');
-      }
+      history.push('/login');
     }
   }, []);
 
-  async function handleLogin(userData: iUser) {
+  async function handleSingIn(userData: iUserRequest) {
     const response = {} as { status: number; message: string };
 
     if (response?.status === 401) {
       setFormError(response.message);
     }
 
-    console.log(userData);
-    setAuth(true);
+    setUserStored(userData);
+
+    // const { user } = response;
+
+    // setUserStored(user);
+    // localStorage.setItem('user', JSON.stringify(user));
   }
 
   return (
-    <AuthContext.Provider
-      value={{
-        formError,
-        setFormError,
-        handleLogin,
-      }}
-    >
+    <AuthContext.Provider value={{ handleSingIn }}>
       {children}
     </AuthContext.Provider>
   );

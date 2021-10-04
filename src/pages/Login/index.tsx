@@ -6,12 +6,23 @@ import InputGroup from 'components/InputGroup';
 function Login() {
   return (
     <AuthCard title="Sign in to your Malbums account">
-      <InputGroup type="email" id="inputEmail" placeholder="Type your email" />
+      <InputGroup
+        input={{
+          type: 'email',
+          id: 'inputEmail',
+          name: 'email',
+          placeholder: 'Type your email',
+        }}
+      />
 
       <InputGroup
-        type="password"
-        id="inputPassword"
-        placeholder="Type an password"
+        input={{
+          type: 'password',
+          id: 'inputPassword',
+          name: 'password',
+          placeholder: 'Type an password',
+          minLength: 8,
+        }}
       />
     </AuthCard>
   );

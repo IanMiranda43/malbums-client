@@ -1,7 +1,6 @@
-import React, { FormEvent, ReactNode, useEffect } from 'react';
+import React, { ReactNode, useContext, useEffect } from 'react';
 
 import Button from 'components/Button';
-
 import {
   Container,
   Wrapper,
@@ -11,7 +10,8 @@ import {
   FormError,
   Buttons,
 } from './styles';
-import { useAuthContext } from 'contexts/AuthContext';
+
+import { AuthRequestContext } from 'contexts/AuthRequestContext';
 import { useHistory } from 'react-router-dom';
 
 interface iAuthCard {
@@ -21,44 +21,13 @@ interface iAuthCard {
 }
 
 function AuthCard({ children, title, registerPage }: iAuthCard) {
-  const AuthRequest = useAuthContext();
+  const { formError, setFormError, handleSubmit } =
+    useContext(AuthRequestContext);
   const history = useHistory();
-  const { formError } = useAuthContext();
 
   useEffect(() => {
-    AuthRequest.setFormError();
+    setFormError();
   }, []);
-
-  function handlePasswordMatch() {
-    const passwordInput = document.getElementById(
-      'inputPassword',
-    ) as HTMLInputElement;
-    const confirmPasswordInput = document.getElementById(
-      'inputConfirmPassword',
-    ) as HTMLInputElement;
-
-    if (passwordInput?.value !== confirmPasswordInput?.value) {
-      passwordInput?.classList.add('error');
-      confirmPasswordInput?.classList.add('error');
-      AuthRequest.setFormError('Passwords need to match');
-
-      return false;
-    }
-
-    passwordInput?.classList.remove('error');
-    confirmPasswordInput?.classList.remove('error');
-    AuthRequest.setFormError();
-
-    return true;
-  }
-
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-
-    if (registerPage && handlePasswordMatch()) {
-      return '';
-    }
-  }
 
   return (
     <Container>
@@ -67,7 +36,10 @@ function AuthCard({ children, title, registerPage }: iAuthCard) {
           <h2>{title}</h2>
         </Title>
 
-        <Form autoComplete="off" onSubmit={(e) => handleSubmit(e)}>
+        <Form
+          autoComplete="off"
+          onSubmit={(e) => handleSubmit(e, registerPage)}
+        >
           <Inputs>
             {children}
 
