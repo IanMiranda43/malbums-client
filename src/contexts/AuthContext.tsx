@@ -55,6 +55,7 @@ export const AuthContextProvider: React.FC = ({ children }) => {
     }
 
     setUserStored(userData);
+    history.push('/');
 
     // const { user } = response;
 
