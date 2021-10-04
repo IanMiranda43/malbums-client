@@ -49,6 +49,7 @@ export const AuthContextProvider: React.FC = ({ children }) => {
     }
 
     console.log(userData);
+    setAuth(true);
   }
 
   return (
