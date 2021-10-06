@@ -8,7 +8,8 @@ export default createGlobalStyle`
 		--background: #1a1a1a;
 		--background-hover: #202327;
 		--white: #D9D9D9;
-		--gray: #7A7A7A;
+		--gray: #3c3c3c;
+		--light-gray: #7A7A7A;
 		--outline: #2F3336;
 		--green: #00C06B;
     --danger: #E8265E;

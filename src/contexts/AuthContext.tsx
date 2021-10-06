@@ -12,11 +12,12 @@ export interface iUserRequest {
 
 type iUser = iUserRequest;
 
-export const AuthContext = createContext(
-  {} as {
-    handleSingIn: (userData: iUserRequest) => Promise<void>;
-  },
-);
+interface iAuthContext {
+  user: iUser;
+  handleSingIn: (userData: iUserRequest) => Promise<void>;
+}
+
+export const AuthContext = createContext({} as iAuthContext);
 
 function checkLocalStorageUser() {
   const storedUser = localStorage.getItem('user');
@@ -27,19 +28,19 @@ function checkLocalStorageUser() {
 }
 
 export const AuthContextProvider: React.FC = ({ children }) => {
-  const [userStored, setUserStored] = useState<iUser>(checkLocalStorageUser);
+  const [user, setUser] = useState<iUser>(checkLocalStorageUser);
   const { setFormError } = useContext(AuthRequestContext);
   const history = useHistory();
 
   useEffect(() => {
-    localStorage.setItem('user', JSON.stringify(userStored));
-  }, [userStored]);
+    localStorage.setItem('user', JSON.stringify(user));
+  }, [user]);
 
   useEffect(() => {
     const { pathname } = history.location;
 
     if (
-      !('email' in userStored) &&
+      !('email' in user) &&
       pathname !== '/register' &&
       pathname !== '/login'
     ) {
@@ -54,17 +55,17 @@ export const AuthContextProvider: React.FC = ({ children }) => {
       setFormError(response.message);
     }
 
-    setUserStored(userData);
+    setUser(userData);
     history.push('/');
 
     // const { user } = response;
 
-    // setUserStored(user);
+    // setUser(user);
     // localStorage.setItem('user', JSON.stringify(user));
   }
 
   return (
-    <AuthContext.Provider value={{ handleSingIn }}>
+    <AuthContext.Provider value={{ user, handleSingIn }}>
       {children}
     </AuthContext.Provider>
   );
