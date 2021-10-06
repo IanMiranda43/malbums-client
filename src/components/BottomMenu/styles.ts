@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { Link } from 'react-router-dom';
 
 import { Home, List, Plus, ExitToApp } from 'styles/Icons';
 
@@ -43,7 +44,8 @@ export const LogoutIcon = styled(ExitToApp)`
   ${CssIcons}
 `;
 
-export const NavItem = styled.div`
+export const NavItem = styled(Link)`
+  text-decoration: none;
   display: flex;
   padding: 10px;
   border-radius: 50%;
@@ -59,6 +61,10 @@ export const NavItem = styled.div`
       > path {
         color: var(--primary);
       }
+    }
+
+    > ${LogoutIcon} {
+      fill: var(--danger);
     }
   }
 

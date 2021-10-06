@@ -1,15 +1,28 @@
 import { AuthContext } from 'contexts/AuthContext';
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { useHistory } from 'react-router';
 
 import { Container, BackButton, BackIcon, Title } from './styles';
 
 interface iHeader {
-  title: string;
   handleButton?: () => void;
 }
 
-function Header({ title, handleButton }: iHeader) {
+function Header({ handleButton }: iHeader) {
   const { user } = useContext(AuthContext);
+  const history = useHistory();
+  const { pathname } = history.location;
+  const [title, setTitle] = useState<string>();
+
+  useEffect(() => {
+    if (pathname === '/create') {
+      setTitle('Create your CD');
+    } else if (pathname === '/first-album') {
+      setTitle('Create your first CD');
+    } else {
+      setTitle('Welcome to Malbums');
+    }
+  }, [pathname]);
 
   return (
     <Container>

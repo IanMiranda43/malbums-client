@@ -11,6 +11,7 @@ interface iInputGroup {
     name: string;
     placeholder?: string;
     minLength?: number;
+    maxLength?: number;
   };
   errorLabel?: {
     errorLabelId: string;

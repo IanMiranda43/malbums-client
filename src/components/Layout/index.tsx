@@ -1,16 +1,25 @@
 import React from 'react';
 
-import { Container, Wrapper } from './styles';
-import Main from 'components/Main';
 import MenuBar from 'components/MenuBar';
+import BottomMenu from 'components/BottomMenu';
 
-function Layout() {
+import { Container, Wrapper, Main } from './styles';
+
+interface iLayout {
+  children: React.ReactNode;
+}
+
+function Layout({ children }: iLayout) {
   return (
     <Container>
       <Wrapper>
         <MenuBar />
 
-        <Main />
+        <Main>
+          {children}
+
+          <BottomMenu />
+        </Main>
       </Wrapper>
     </Container>
   );

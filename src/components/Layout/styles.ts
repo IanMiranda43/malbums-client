@@ -12,3 +12,20 @@ export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
 `;
+
+export const Main = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: min(800px, 100%);
+  height: 100%;
+  overflow-x: hidden;
+
+  @media (min-width: 551px) {
+    border-left: 2px solid var(--outline);
+    border-right: 2px solid var(--outline);
+  }
+
+  @media (max-width: 550px) {
+    padding-bottom: 62px;
+  }
+`;

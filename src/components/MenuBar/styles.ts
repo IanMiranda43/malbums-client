@@ -1,9 +1,9 @@
 import styled, { css } from 'styled-components';
+import { Link } from 'react-router-dom';
 
 import { Home, List, Plus, ExitToApp } from 'styles/Icons';
 
 export const Container = styled.div`
-  /* border-left: 1px solid var(--outline); */
   position: sticky;
   top: 0;
   z-index: 2;
@@ -55,7 +55,8 @@ const NavItemHighlight = css`
   }
 `;
 
-export const NavItem = styled.div`
+export const NavItem = styled(Link)`
+  text-decoration: none;
   width: max-content;
   padding: 10px;
   border-radius: 15px;
@@ -148,12 +149,13 @@ export const LogoutIcon = styled(ExitToApp)`
   ${CssIcon}
 `;
 
-export const LogoutButton = styled.button`
+export const LogoutButton = styled(Link)`
+  text-decoration: none;
   border-radius: 50%;
 
   &:hover {
     > ${LogoutIcon} {
-      fill: var(--primary);
+      fill: var(--danger);
     }
   }
 

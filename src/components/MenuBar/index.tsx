@@ -17,17 +17,17 @@ function MenuBar() {
   return (
     <Container>
       <NavMenu>
-        <NavItem className="active">
+        <NavItem to="/" className="active">
           <HomeIcon />
           <strong>Home</strong>
         </NavItem>
 
-        <NavItem>
+        <NavItem to="/list">
           <ListIcon />
           <strong>My CD`s List</strong>
         </NavItem>
 
-        <NavItem>
+        <NavItem to="/create">
           <PlusIcon />
           <strong>Create CD</strong>
         </NavItem>
@@ -39,7 +39,7 @@ function MenuBar() {
           <span>0 CD`s</span>
         </ProfileData>
 
-        <LogoutButton>
+        <LogoutButton to="/logout">
           <LogoutIcon />
         </LogoutButton>
       </ProfileMenu>

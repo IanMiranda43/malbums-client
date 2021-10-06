@@ -56,6 +56,7 @@ export const Title = styled.div`
     font-size: 22px;
   }
   > span {
+    margin-top: 3px;
     font-size: 14px;
     color: var(--light-gray);
   }

@@ -12,19 +12,19 @@ import {
 function BottomMenu() {
   return (
     <Container>
-      <NavItem>
+      <NavItem to="/">
         <HomeIcon />
       </NavItem>
 
-      <NavItem>
+      <NavItem to="/list">
         <ListIcon />
       </NavItem>
 
-      <NavItem>
+      <NavItem to="/create">
         <PlusIcon />
       </NavItem>
 
-      <NavItem>
+      <NavItem to="/logout">
         <LogoutIcon />
       </NavItem>
     </Container>
