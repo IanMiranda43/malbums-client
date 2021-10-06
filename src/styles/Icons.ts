@@ -1,3 +1,4 @@
+export { AppIcon } from '../components/AppIcon';
 export { ArrowLeft } from '@styled-icons/fa-solid';
 export { PlusCircle } from '@styled-icons/bootstrap';
 export { Home } from '@styled-icons/fluentui-system-regular';

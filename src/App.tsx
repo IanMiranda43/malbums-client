@@ -5,7 +5,7 @@ import GlobalStyles from 'styles/GlobalStyles';
 
 import { AuthContextProvider } from 'contexts/AuthContext';
 import { AuthRequestContextProvider } from 'contexts/AuthRequestContext';
-import Index from 'pages/Index';
+import Home from 'pages/Home';
 import Login from 'pages/Login';
 import Register from 'pages/Register';
 
@@ -13,7 +13,7 @@ function App() {
   return (
     <BrowserRouter>
       <AuthContextProvider>
-        <Route path="/" exact component={Index} />
+        <Route path="/" exact component={Home} />
 
         <AuthRequestContextProvider>
           <Route path="/login" exact component={Login} />

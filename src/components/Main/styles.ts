@@ -5,6 +5,7 @@ export const Container = styled.div`
   flex-direction: column;
   width: min(800px, 100%);
   height: 100%;
+  overflow-x: hidden;
 
   @media (min-width: 551px) {
     border-left: 2px solid var(--outline);
