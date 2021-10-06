@@ -14,11 +14,6 @@ export const Container = styled.div`
   border-bottom: 2px solid var(--outline);
   background: var(--background);
   align-items: center;
-
-  > strong {
-    margin-left: 15px;
-    font-size: 22px;
-  }
 `;
 
 export const BackIcon = styled(ArrowLeft)`
@@ -49,5 +44,19 @@ export const BackButton = styled.button`
   }
   &:active {
     opacity: 0.8;
+  }
+`;
+
+export const Title = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-left: 15px;
+
+  > strong {
+    font-size: 22px;
+  }
+  > span {
+    font-size: 14px;
+    color: var(--light-gray);
   }
 `;

@@ -1,6 +1,7 @@
-import React from 'react';
+import { AuthContext } from 'contexts/AuthContext';
+import React, { useContext } from 'react';
 
-import { Container, BackButton, BackIcon } from './styles';
+import { Container, BackButton, BackIcon, Title } from './styles';
 
 interface iHeader {
   title: string;
@@ -8,6 +9,8 @@ interface iHeader {
 }
 
 function Header({ title, handleButton }: iHeader) {
+  const { user } = useContext(AuthContext);
+
   return (
     <Container>
       <BackButton
@@ -18,7 +21,10 @@ function Header({ title, handleButton }: iHeader) {
         <BackIcon />
       </BackButton>
 
-      <strong>{title}</strong>
+      <Title>
+        <strong>{title}</strong>
+        <span>{user.username}</span>
+      </Title>
     </Container>
   );
 }
