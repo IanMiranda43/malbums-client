@@ -9,10 +9,11 @@ import { AuthRequestContextProvider } from 'contexts/AuthRequestContext';
 import Login from 'pages/Login';
 import Register from 'pages/Register';
 
+import Layout from 'components/Layout';
 import HomePage from 'pages/HomePage';
 import FirstAlbumPage from 'pages/FirstAlbumPage';
 import CreateAlbumPage from 'pages/CreateAlbumPage';
-import Layout from 'components/Layout';
+import AlbumsListPage from 'pages/AlbumsListPage';
 
 function App() {
   return (
@@ -29,6 +30,8 @@ function App() {
           <Route path="/first-album" component={FirstAlbumPage} />
 
           <Route path="/create" component={CreateAlbumPage} />
+
+          <Route path="/list" component={AlbumsListPage} />
         </Layout>
       </AuthContextProvider>
       <GlobalStyles />

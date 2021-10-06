@@ -17,6 +17,8 @@ function Header({ handleButton }: iHeader) {
   useEffect(() => {
     if (pathname === '/create') {
       setTitle('Create your CD');
+    } else if (pathname === '/list') {
+      setTitle('My CD`s list');
     } else if (pathname === '/first-album') {
       setTitle('Create your first CD');
     } else {

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { PlusCircle } from 'styles/Icons';
@@ -43,7 +44,8 @@ export const PlusIcon = styled(PlusCircle)`
   }
 `;
 
-export const PlusButton = styled.button`
+export const PlusButton = styled(Link)`
+  text-decoration: none;
   display: flex;
   margin-top: max(20px, min(10vw, 70px));
 

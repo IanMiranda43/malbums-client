@@ -8,7 +8,7 @@ function AddFirstAlbum() {
       <Body>
         <strong>You dont have any CD yet. Create your first one</strong>
 
-        <PlusButton>
+        <PlusButton to="/create">
           <PlusIcon />
         </PlusButton>
       </Body>
