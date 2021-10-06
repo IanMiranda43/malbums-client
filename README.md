@@ -56,7 +56,7 @@ yarn install
 
 ### Start the server:
 
-The script will run the migrations and then start the application at the port setted on the `.env` file.
+The script will run the migrations and then start the application at the default port 3000.
 
 ```bash
 # with npm
