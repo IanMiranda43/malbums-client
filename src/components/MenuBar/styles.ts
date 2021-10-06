@@ -33,7 +33,7 @@ export const Container = styled.div`
   }
 `;
 
-export const NavMenu = styled.div`
+export const NavMenu = styled.nav`
   display: flex;
   flex-direction: column;
 

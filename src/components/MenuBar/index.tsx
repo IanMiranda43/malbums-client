@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import {
   Container,
@@ -14,20 +14,46 @@ import {
 } from './styles';
 
 function MenuBar() {
+  const [NavHomeBtn, setNavHomeBtn] = useState<string>('active');
+  const [NavListBtn, setNavListBtn] = useState<string>();
+  const [NavCreateBtn, setNavCreateBtn] = useState<string>();
+
+  function handleClick(path: string) {
+    setNavHomeBtn('');
+    setNavListBtn('');
+    setNavCreateBtn('');
+
+    if (path === '/') {
+      setNavHomeBtn('active');
+    } else if (path === '/list') {
+      setNavListBtn('active');
+    } else if (path === '/create') {
+      setNavCreateBtn('active');
+    }
+  }
+
   return (
     <Container>
       <NavMenu>
-        <NavItem to="/" className="active">
+        <NavItem to="/" className={NavHomeBtn} onClick={() => handleClick('/')}>
           <HomeIcon />
           <strong>Home</strong>
         </NavItem>
 
-        <NavItem to="/list">
+        <NavItem
+          to="/list"
+          className={NavListBtn}
+          onClick={() => handleClick('/list')}
+        >
           <ListIcon />
           <strong>My CD`s List</strong>
         </NavItem>
 
-        <NavItem to="/create">
+        <NavItem
+          to="/create"
+          className={NavCreateBtn}
+          onClick={() => handleClick('/create')}
+        >
           <PlusIcon />
           <strong>Create CD</strong>
         </NavItem>
