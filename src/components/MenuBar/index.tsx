@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import {
   Container,
-  SideAppIcon,
+  MalbumsIcon,
   NavMenu,
   NavItem,
   HomeIcon,
@@ -35,7 +35,7 @@ function MenuBar() {
 
   return (
     <Container>
-      <SideAppIcon />
+      <MalbumsIcon />
 
       <NavMenu>
         <NavItem to="/" className={NavHomeBtn} onClick={() => handleClick('/')}>

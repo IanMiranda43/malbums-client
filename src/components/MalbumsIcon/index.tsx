@@ -1,6 +1,6 @@
 import React, { SVGProps } from 'react';
 
-export function AppIcon(props: SVGProps<SVGSVGElement>) {
+export function MalbumsIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 32 32" {...props}>
       <path

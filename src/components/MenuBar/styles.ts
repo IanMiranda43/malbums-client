@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
 
-import { AppIcon, Home, List, Plus, ExitToApp } from 'styles/Icons';
+import { Malbums, Home, List, Plus, ExitToApp } from 'styles/Icons';
 
 export const Container = styled.div`
   position: sticky;
@@ -94,7 +94,7 @@ const CssIcon = css`
   width: 33px;
 `;
 
-export const SideAppIcon = styled(AppIcon)`
+export const MalbumsIcon = styled(Malbums)`
   height: 200px;
   width: 200px;
   margin: 20px auto 30px;
