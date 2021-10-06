@@ -18,6 +18,11 @@ function App() {
   return (
     <BrowserRouter>
       <AuthContextProvider>
+        <AuthRequestContextProvider>
+          <Route path="/login" component={Login} />
+          <Route path="/register" component={Register} />
+        </AuthRequestContextProvider>
+
         <Layout>
           <Route path="/" exact component={HomePage} />
 
@@ -25,11 +30,6 @@ function App() {
 
           <Route path="/create" component={CreateAlbumPage} />
         </Layout>
-
-        <AuthRequestContextProvider>
-          <Route path="/login" component={Login} />
-          <Route path="/register" component={Register} />
-        </AuthRequestContextProvider>
       </AuthContextProvider>
       <GlobalStyles />
     </BrowserRouter>
