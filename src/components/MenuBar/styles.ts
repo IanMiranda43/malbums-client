@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
 
-import { Home, List, Plus, ExitToApp } from 'styles/Icons';
+import { AppIcon, Home, List, Plus, ExitToApp } from 'styles/Icons';
 
 export const Container = styled.div`
   position: sticky;
@@ -10,7 +10,6 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   height: 100vh;
-  justify-content: space-between;
   background: var(--background);
   padding: 15px 10px;
 
@@ -36,10 +35,6 @@ export const Container = styled.div`
 export const NavMenu = styled.nav`
   display: flex;
   flex-direction: column;
-
-  > div + div {
-    margin-top: 10px;
-  }
 `;
 
 const NavItemHighlight = css`
@@ -58,7 +53,9 @@ const NavItemHighlight = css`
 export const NavItem = styled(Link)`
   text-decoration: none;
   width: max-content;
+  margin-top: 10px;
   padding: 10px;
+
   border-radius: 15px;
   align-items: center;
 
@@ -84,6 +81,7 @@ export const NavItem = styled(Link)`
 
   @media (max-width: 1200px) {
     border-radius: 50%;
+    margin-top: 20px;
 
     > strong {
       display: none;
@@ -94,6 +92,21 @@ export const NavItem = styled(Link)`
 const CssIcon = css`
   height: 33px;
   width: 33px;
+`;
+
+export const SideAppIcon = styled(AppIcon)`
+  height: 200px;
+  width: 200px;
+  margin: 20px auto 30px;
+
+  > path {
+    fill: var(--primary);
+  }
+
+  @media (max-width: 1200px) {
+    ${CssIcon}
+    margin: 10px;
+  }
 `;
 
 export const HomeIcon = styled(Home)`
@@ -114,11 +127,11 @@ export const ProfileData = styled.div`
 
   > strong,
   span {
-    font-size: 15px;
+    font-size: 16px;
   }
 
   > span {
-    margin-top: 5px;
+    margin-top: 6px;
     color: var(--light-gray);
   }
 `;
@@ -126,9 +139,10 @@ export const ProfileData = styled.div`
 export const ProfileMenu = styled.div`
   display: flex;
   justify-content: space-between;
+  margin-top: auto;
 
   align-items: center;
-  padding: 20px;
+  padding: 15px 20px;
   border-radius: 15px;
 
   &:hover {

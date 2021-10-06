@@ -21,8 +21,8 @@ export const Main = styled.div`
   overflow-x: hidden;
 
   @media (min-width: 551px) {
-    border-left: 2px solid var(--outline);
-    border-right: 2px solid var(--outline);
+    border-left: 1px solid var(--outline);
+    border-right: 1px solid var(--outline);
   }
 
   @media (max-width: 550px) {

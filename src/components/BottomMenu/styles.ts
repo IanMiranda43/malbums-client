@@ -15,7 +15,7 @@ export const Container = styled.div`
   padding: 5px 15px;
   justify-content: space-around;
   align-items: center;
-  border-top: 2px solid var(--gray);
+  border-top: 1px solid var(--gray);
   background: var(--background);
 
   @media (min-width: 551px) {

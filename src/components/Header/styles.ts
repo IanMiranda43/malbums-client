@@ -8,10 +8,9 @@ export const Container = styled.div`
   z-index: 2;
   display: flex;
   width: 100%;
-  height: 65px;
 
   padding: 10px 15px;
-  border-bottom: 2px solid var(--outline);
+  border-bottom: 1px solid var(--outline);
   background: var(--background);
   align-items: center;
 `;

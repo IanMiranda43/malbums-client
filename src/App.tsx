@@ -9,7 +9,6 @@ import { AuthRequestContextProvider } from 'contexts/AuthRequestContext';
 import Login from 'pages/Login';
 import Register from 'pages/Register';
 
-import Layout from 'components/Layout';
 import HomePage from 'pages/HomePage';
 import FirstAlbumPage from 'pages/FirstAlbumPage';
 import CreateAlbumPage from 'pages/CreateAlbumPage';
@@ -24,15 +23,13 @@ function App() {
           <Route path="/register" component={Register} />
         </AuthRequestContextProvider>
 
-        <Layout>
-          <Route path="/" exact component={HomePage} />
+        <Route path="/" exact component={HomePage} />
 
-          <Route path="/first-album" component={FirstAlbumPage} />
+        <Route path="/first-album" component={FirstAlbumPage} />
 
-          <Route path="/create" component={CreateAlbumPage} />
+        <Route path="/create" component={CreateAlbumPage} />
 
-          <Route path="/list" component={AlbumsListPage} />
-        </Layout>
+        <Route path="/list" component={AlbumsListPage} />
       </AuthContextProvider>
       <GlobalStyles />
     </BrowserRouter>

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import {
   Container,
+  SideAppIcon,
   NavMenu,
   NavItem,
   HomeIcon,
@@ -34,6 +35,8 @@ function MenuBar() {
 
   return (
     <Container>
+      <SideAppIcon />
+
       <NavMenu>
         <NavItem to="/" className={NavHomeBtn} onClick={() => handleClick('/')}>
           <HomeIcon />
