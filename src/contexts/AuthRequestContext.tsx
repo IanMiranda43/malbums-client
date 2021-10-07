@@ -8,11 +8,18 @@ import React, {
 } from 'react';
 import { AuthContext, iUserRequest } from './AuthContext';
 
-type SetFormErrorType = Dispatch<SetStateAction<string>> | any;
+interface iAuthRequestContextProvider {
+  children: React.ReactNode;
+}
 
-interface iAuthRequestContext {
+interface iHandlePasswordMatch {
+  setFormError: Dispatch<SetStateAction<string>> | any;
+  setPasswordError: Dispatch<SetStateAction<string>> | any;
+}
+
+interface iAuthRequestContext extends iHandlePasswordMatch {
+  passwordError?: string;
   formError?: string;
-  setFormError: SetFormErrorType;
   handleSubmit: (
     e: FormEvent<HTMLFormElement>,
     registerPage: boolean | undefined,
@@ -21,7 +28,14 @@ interface iAuthRequestContext {
 
 export const AuthRequestContext = createContext({} as iAuthRequestContext);
 
-function handlePasswordMatch(setFormError: SetFormErrorType) {
+export function useAuthRequestContext() {
+  return useContext(AuthRequestContext);
+}
+
+function handlePasswordMatch({
+  setFormError,
+  setPasswordError,
+}: iHandlePasswordMatch) {
   const passwordInput = document.getElementById(
     'inputPassword',
   ) as HTMLInputElement;
@@ -30,21 +44,22 @@ function handlePasswordMatch(setFormError: SetFormErrorType) {
   ) as HTMLInputElement;
 
   if (passwordInput?.value !== confirmPasswordInput?.value) {
-    passwordInput?.classList.add('error');
-    confirmPasswordInput?.classList.add('error');
+    setPasswordError('error');
     setFormError('Passwords need to match');
 
     return false;
   }
 
-  passwordInput?.classList.remove('error');
-  confirmPasswordInput?.classList.remove('error');
+  setPasswordError();
   setFormError();
 
   return true;
 }
 
-export const AuthRequestContextProvider: React.FC = ({ children }) => {
+export function AuthRequestContextProvider({
+  children,
+}: iAuthRequestContextProvider) {
+  const [passwordError, setPasswordError] = useState<string>();
   const [formError, setFormError] = useState<string>();
   const { handleSingIn } = useContext(AuthContext);
 
@@ -57,7 +72,10 @@ export const AuthRequestContextProvider: React.FC = ({ children }) => {
     const formData = new FormData(e.currentTarget);
     const userData = Object.fromEntries(formData) as unknown as iUserRequest;
 
-    if (registerPage && !handlePasswordMatch(setFormError)) {
+    if (
+      registerPage &&
+      !handlePasswordMatch({ setFormError, setPasswordError })
+    ) {
       return;
     }
 
@@ -67,12 +85,14 @@ export const AuthRequestContextProvider: React.FC = ({ children }) => {
   return (
     <AuthRequestContext.Provider
       value={{
+        passwordError,
         formError,
         setFormError,
+        setPasswordError,
         handleSubmit,
       }}
     >
       {children}
     </AuthRequestContext.Provider>
   );
-};
+}

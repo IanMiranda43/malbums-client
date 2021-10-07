@@ -1,5 +1,5 @@
-import { AuthContext } from 'contexts/AuthContext';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useAuthContext } from 'contexts/AuthContext';
 import { useHistory } from 'react-router';
 
 import { Container, BackButton, BackIcon, Title } from './styles';
@@ -9,7 +9,7 @@ interface iHeader {
 }
 
 function Header({ handleButton }: iHeader) {
-  const { user } = useContext(AuthContext);
+  const { user } = useAuthContext();
   const history = useHistory();
   const { pathname } = history.location;
   const [title, setTitle] = useState<string>();

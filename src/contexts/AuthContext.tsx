@@ -3,6 +3,10 @@ import { useHistory } from 'react-router-dom';
 
 import { AuthRequestContext } from './AuthRequestContext';
 
+interface iAuthContextProvider {
+  children: React.ReactNode;
+}
+
 export interface iUserRequest {
   username?: string;
   email: string;
@@ -19,13 +23,17 @@ interface iAuthContext {
 
 export const AuthContext = createContext({} as iAuthContext);
 
+export function useAuthContext() {
+  return useContext(AuthContext);
+}
+
 function checkLocalStorageUser() {
   const storedUser = localStorage.getItem('user');
 
   if (storedUser) return JSON.parse(storedUser);
 }
 
-export const AuthContextProvider: React.FC = ({ children }) => {
+export function AuthContextProvider({ children }: iAuthContextProvider) {
   const [user, setUser] = useState<iUser>(checkLocalStorageUser);
   const { setFormError } = useContext(AuthRequestContext);
   const history = useHistory();
@@ -57,4 +65,4 @@ export const AuthContextProvider: React.FC = ({ children }) => {
       {children}
     </AuthContext.Provider>
   );
-};
+}

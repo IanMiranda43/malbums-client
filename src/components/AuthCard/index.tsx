@@ -1,6 +1,9 @@
-import React, { ReactNode, useContext, useEffect } from 'react';
+import React, { ReactNode, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 
+import { useAuthRequestContext } from 'contexts/AuthRequestContext';
 import Button from 'components/Button';
+
 import {
   Container,
   Wrapper,
@@ -11,9 +14,6 @@ import {
   Buttons,
 } from './styles';
 
-import { AuthRequestContext } from 'contexts/AuthRequestContext';
-import { useHistory } from 'react-router-dom';
-
 interface iAuthCard {
   children: ReactNode;
   title: string;
@@ -21,12 +21,13 @@ interface iAuthCard {
 }
 
 function AuthCard({ children, title, registerPage }: iAuthCard) {
-  const { formError, setFormError, handleSubmit } =
-    useContext(AuthRequestContext);
+  const { formError, setFormError, setPasswordError, handleSubmit } =
+    useAuthRequestContext();
   const history = useHistory();
 
   useEffect(() => {
     setFormError();
+    setPasswordError();
   }, []);
 
   return (

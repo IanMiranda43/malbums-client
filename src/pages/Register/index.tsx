@@ -2,8 +2,11 @@ import React from 'react';
 
 import AuthCard from 'components/AuthCard';
 import InputGroup from 'components/InputGroup';
+import { useAuthRequestContext } from 'contexts/AuthRequestContext';
 
 function Register() {
+  const { passwordError } = useAuthRequestContext();
+
   return (
     <AuthCard title="Create your Malbums account" registerPage>
       <InputGroup
@@ -30,6 +33,7 @@ function Register() {
           name: 'password',
           placeholder: 'Type an password',
           minLength: 8,
+          className: passwordError,
         }}
       />
 
@@ -40,6 +44,7 @@ function Register() {
           name: 'confirmPassword',
           placeholder: 'Type the same password again',
           minLength: 8,
+          className: passwordError,
         }}
       />
     </AuthCard>

@@ -1,19 +1,21 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
-interface iNavigationContextProvider {
-  children: React.ReactNode;
-}
-
 interface iNavigationContext {
   NavHomeBtn: string | undefined;
   NavListBtn: string | undefined;
   NavCreateBtn: string | undefined;
 }
 
+interface iNavigationContextProvider {
+  children: React.ReactNode;
+}
+
 export const NavigationContext = createContext({} as iNavigationContext);
 
-export const useNavigationContext = () => useContext(NavigationContext);
+export function useNavigationContext() {
+  return useContext(NavigationContext);
+}
 
 export function NavigationContextProvider({
   children,
