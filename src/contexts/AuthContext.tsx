@@ -1,4 +1,11 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, {
+  createContext,
+  Dispatch,
+  SetStateAction,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { AuthRequestContext } from './AuthRequestContext';
@@ -17,6 +24,8 @@ export interface iUserRequest {
 type iUser = iUserRequest;
 
 interface iAuthContext {
+  token: string;
+  setToken: Dispatch<SetStateAction<string>>;
   user: iUser;
   handleSingIn: (userData: iUserRequest) => Promise<void>;
 }
@@ -35,12 +44,16 @@ function checkLocalStorageUser() {
 
 export function AuthContextProvider({ children }: iAuthContextProvider) {
   const [user, setUser] = useState<iUser>(checkLocalStorageUser);
+  const [token, setToken] = useState<string>('');
   const { setFormError } = useContext(AuthRequestContext);
   const history = useHistory();
 
   useEffect(() => {
     if (user) {
       localStorage.setItem('user', JSON.stringify(user));
+    }
+    if (user === null) {
+      localStorage.removeItem('user');
     }
   }, [user]);
 
@@ -61,7 +74,7 @@ export function AuthContextProvider({ children }: iAuthContextProvider) {
   }
 
   return (
-    <AuthContext.Provider value={{ user, handleSingIn }}>
+    <AuthContext.Provider value={{ token, setToken, user, handleSingIn }}>
       {children}
     </AuthContext.Provider>
   );
