@@ -1,37 +1,26 @@
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Redirect } from 'react-router-dom';
 
 import GlobalStyles from 'styles/GlobalStyles';
 
 import { AuthContextProvider } from 'contexts/AuthContext';
-import { AuthRequestContextProvider } from 'contexts/AuthRequestContext';
-
-import Login from 'pages/Login';
-import Register from 'pages/Register';
-
-import HomePage from 'pages/HomePage';
-import FirstAlbumPage from 'pages/FirstAlbumPage';
-import CreateAlbumPage from 'pages/CreateAlbumPage';
-import AlbumsListPage from 'pages/AlbumsListPage';
+import { NavigationContextProvider } from 'contexts/NavigationContext';
+import { AuthenticationRoutesGroup, PrivateRoutesGroup } from './routes';
 
 function App() {
   return (
     <BrowserRouter>
       <AuthContextProvider>
-        <AuthRequestContextProvider>
-          <Route path="/login" component={Login} />
-          <Route path="/register" component={Register} />
-        </AuthRequestContextProvider>
+        <AuthenticationRoutesGroup />
 
-        <Route path="/" exact component={HomePage} />
+        <NavigationContextProvider>
+          <PrivateRoutesGroup />
+        </NavigationContextProvider>
 
-        <Route path="/first-album" component={FirstAlbumPage} />
+        <Route path="/" exact render={() => <Redirect to="/app" />} />
 
-        <Route path="/create" component={CreateAlbumPage} />
-
-        <Route path="/list" component={AlbumsListPage} />
+        <GlobalStyles />
       </AuthContextProvider>
-      <GlobalStyles />
     </BrowserRouter>
   );
 }

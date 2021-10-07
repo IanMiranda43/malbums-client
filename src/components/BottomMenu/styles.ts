@@ -44,24 +44,32 @@ export const LogoutIcon = styled(ExitToApp)`
   ${CssIcons}
 `;
 
+const NavItemHighlight = css`
+  > svg {
+    fill: var(--primary);
+  }
+
+  > ${PlusIcon} {
+    > path {
+      color: var(--primary);
+    }
+  }
+`;
+
 export const NavItem = styled(Link)`
   text-decoration: none;
   display: flex;
   padding: 10px;
   border-radius: 50%;
 
+  &.active {
+    ${NavItemHighlight}
+  }
+
   &:hover {
+    ${NavItemHighlight}
+
     background: var(--background-hover);
-
-    > svg {
-      fill: var(--primary);
-    }
-
-    > ${PlusIcon} {
-      > path {
-        color: var(--primary);
-      }
-    }
 
     > ${LogoutIcon} {
       fill: var(--danger);

@@ -8,7 +8,7 @@ function HomeCard() {
       <Card>
         <strong>Create an new CD</strong>
 
-        <PlusButton to="/create">
+        <PlusButton to="/app/create">
           <PlusIcon />
         </PlusButton>
       </Card>
@@ -16,7 +16,7 @@ function HomeCard() {
       <Card>
         <strong>List my CD`s</strong>
 
-        <PlusButton to="/list">
+        <PlusButton to="/app/list">
           <ListIcon />
         </PlusButton>
       </Card>

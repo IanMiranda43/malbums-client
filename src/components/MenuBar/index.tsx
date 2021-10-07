@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
+
+import { useNavigationContext } from 'contexts/NavigationContext';
 
 import {
   Container,
@@ -15,48 +17,24 @@ import {
 } from './styles';
 
 function MenuBar() {
-  const [NavHomeBtn, setNavHomeBtn] = useState<string>('active');
-  const [NavListBtn, setNavListBtn] = useState<string>();
-  const [NavCreateBtn, setNavCreateBtn] = useState<string>();
-
-  function handleClick(path: string) {
-    setNavHomeBtn('');
-    setNavListBtn('');
-    setNavCreateBtn('');
-
-    if (path === '/') {
-      setNavHomeBtn('active');
-    } else if (path === '/list') {
-      setNavListBtn('active');
-    } else if (path === '/create') {
-      setNavCreateBtn('active');
-    }
-  }
+  const { NavHomeBtn, NavListBtn, NavCreateBtn } = useNavigationContext();
 
   return (
     <Container>
       <MalbumsIcon />
 
       <NavMenu>
-        <NavItem to="/" className={NavHomeBtn} onClick={() => handleClick('/')}>
+        <NavItem to="/app" className={NavHomeBtn}>
           <HomeIcon />
           <strong>Home</strong>
         </NavItem>
 
-        <NavItem
-          to="/list"
-          className={NavListBtn}
-          onClick={() => handleClick('/list')}
-        >
+        <NavItem to="/app/list" className={NavListBtn}>
           <ListIcon />
           <strong>My CD`s List</strong>
         </NavItem>
 
-        <NavItem
-          to="/create"
-          className={NavCreateBtn}
-          onClick={() => handleClick('/create')}
-        >
+        <NavItem to="/app/create" className={NavCreateBtn}>
           <PlusIcon />
           <strong>Create CD</strong>
         </NavItem>

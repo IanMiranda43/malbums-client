@@ -23,8 +23,6 @@ function checkLocalStorageUser() {
   const storedUser = localStorage.getItem('user');
 
   if (storedUser) return JSON.parse(storedUser);
-
-  return {} as iUser;
 }
 
 export const AuthContextProvider: React.FC = ({ children }) => {
@@ -33,20 +31,10 @@ export const AuthContextProvider: React.FC = ({ children }) => {
   const history = useHistory();
 
   useEffect(() => {
-    localStorage.setItem('user', JSON.stringify(user));
-  }, [user]);
-
-  useEffect(() => {
-    const { pathname } = history.location;
-
-    if (
-      !('email' in user) &&
-      pathname !== '/register' &&
-      pathname !== '/login'
-    ) {
-      history.push('/login');
+    if (user) {
+      localStorage.setItem('user', JSON.stringify(user));
     }
-  }, []);
+  }, [user]);
 
   async function handleSingIn(userData: iUserRequest) {
     const response = {} as { status: number; message: string };
@@ -56,7 +44,7 @@ export const AuthContextProvider: React.FC = ({ children }) => {
     }
 
     setUser(userData);
-    history.push('/');
+    history.push('/app');
 
     // const { user } = response;
 
