@@ -163,8 +163,7 @@ export const LogoutIcon = styled(ExitToApp)`
   ${CssIcon}
 `;
 
-export const LogoutButton = styled(Link)`
-  text-decoration: none;
+export const LogoutButton = styled.button`
   border-radius: 50%;
 
   &:hover {

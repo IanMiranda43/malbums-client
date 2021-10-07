@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { useNavigationContext } from 'contexts/NavigationContext';
+import { useAuthContext } from 'contexts/AuthContext';
 
 import {
   Container,
@@ -18,6 +19,7 @@ import {
 
 function MenuBar() {
   const { NavHomeBtn, NavListBtn, NavCreateBtn } = useNavigationContext();
+  const { handleSingOut } = useAuthContext();
 
   return (
     <Container>
@@ -46,7 +48,7 @@ function MenuBar() {
           <span>0 CD`s</span>
         </ProfileData>
 
-        <LogoutButton to="/logout">
+        <LogoutButton onClick={handleSingOut}>
           <LogoutIcon />
         </LogoutButton>
       </ProfileMenu>

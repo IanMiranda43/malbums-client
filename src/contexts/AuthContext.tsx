@@ -21,13 +21,14 @@ export interface iUserRequest {
   confirmPassword?: string;
 }
 
-type iUser = iUserRequest;
+type iUser = iUserRequest | undefined | null;
 
 interface iAuthContext {
   token: string;
   setToken: Dispatch<SetStateAction<string>>;
   user: iUser;
   handleSingIn: (userData: iUserRequest) => Promise<void>;
+  handleSingOut: () => Promise<void>;
 }
 
 export const AuthContext = createContext({} as iAuthContext);
@@ -66,15 +67,21 @@ export function AuthContextProvider({ children }: iAuthContextProvider) {
 
     setUser(userData);
     history.push('/app');
+  }
 
-    // const { user } = response;
+  async function handleSingOut() {
+    const response = true;
 
-    // setUser(user);
-    // localStorage.setItem('user', JSON.stringify(user));
+    if (response) {
+      setUser(undefined);
+      history.replace('/login');
+    }
   }
 
   return (
-    <AuthContext.Provider value={{ token, setToken, user, handleSingIn }}>
+    <AuthContext.Provider
+      value={{ token, setToken, user, handleSingIn, handleSingOut }}
+    >
       {children}
     </AuthContext.Provider>
   );

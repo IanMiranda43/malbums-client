@@ -56,7 +56,7 @@ const NavItemHighlight = css`
   }
 `;
 
-export const NavItem = styled(Link)`
+const NavItemCss = css`
   text-decoration: none;
   display: flex;
   padding: 10px;
@@ -68,7 +68,6 @@ export const NavItem = styled(Link)`
 
   &:hover {
     ${NavItemHighlight}
-
     background: var(--background-hover);
 
     > ${LogoutIcon} {
@@ -79,4 +78,12 @@ export const NavItem = styled(Link)`
   &:active {
     opacity: 0.8;
   }
+`;
+
+export const NavItem = styled(Link)`
+  ${NavItemCss}
+`;
+
+export const LogoutButton = styled.button`
+  ${NavItemCss}
 `;

@@ -38,7 +38,7 @@ function Header({ handleButton }: iHeader) {
 
       <Title>
         <strong>{title}</strong>
-        <span>{user.username}</span>
+        <span>{user?.username}</span>
       </Title>
     </Container>
   );

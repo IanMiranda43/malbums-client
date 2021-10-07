@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { useNavigationContext } from 'contexts/NavigationContext';
+import { useAuthContext } from 'contexts/AuthContext';
 
 import {
   Container,
@@ -8,11 +9,13 @@ import {
   HomeIcon,
   ListIcon,
   PlusIcon,
+  LogoutButton,
   LogoutIcon,
 } from './styles';
 
 function BottomMenu() {
   const { NavHomeBtn, NavListBtn, NavCreateBtn } = useNavigationContext();
+  const { handleSingOut } = useAuthContext();
 
   return (
     <Container>
@@ -28,9 +31,9 @@ function BottomMenu() {
         <PlusIcon />
       </NavItem>
 
-      <NavItem to="/logout">
+      <LogoutButton onClick={handleSingOut}>
         <LogoutIcon />
-      </NavItem>
+      </LogoutButton>
     </Container>
   );
 }
