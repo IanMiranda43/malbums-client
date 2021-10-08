@@ -32,8 +32,10 @@ function handleErrors(data: iApiResponse) {
 }
 
 class AlbumsRequestsService {
+  constructor(private api = apiConnection()) {}
+
   async createAlbum(newAlbum: iAlbum): Promise<iAlbumResponse | false> {
-    const { status, data } = (await apiConnection.post(
+    const { status, data } = (await this.api.post(
       '/album',
       newAlbum,
     )) as AxiosApiResponse;

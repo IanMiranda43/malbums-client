@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import {
   Route,
   Redirect,
@@ -6,24 +6,22 @@ import {
   RouteProps,
 } from 'react-router-dom';
 
-import { AuthContext } from 'contexts/AuthContext';
-
-import { AuthRequestContextProvider } from 'contexts/AuthRequestContext';
+import { useAuthContext } from 'contexts/AuthContext';
 
 import Login from 'pages/Login';
 import Register from 'pages/Register';
 
+import Layout from 'components/Layout';
 import HomePage from 'pages/HomePage';
 import FirstAlbumPage from 'pages/FirstAlbumPage';
 import CreateAlbumPage from 'pages/CreateAlbumPage';
 import AlbumsListPage from 'pages/AlbumsListPage';
-import Layout from 'components/Layout';
 
 export function PrivateRoute({ children, ...rest }: RouteProps) {
-  const { user } = useContext(AuthContext);
+  const { userData } = useAuthContext();
 
   function ensureAuthentication({ location }: RouteChildrenProps) {
-    if (user) {
+    if (userData) {
       return children;
     }
 
@@ -60,9 +58,9 @@ export function PrivateRoutesGroup() {
 
 export function AuthenticationRoutesGroup() {
   return (
-    <AuthRequestContextProvider>
+    <>
       <Route path="/login" component={Login} />
       <Route path="/register" component={Register} />
-    </AuthRequestContextProvider>
+    </>
   );
 }

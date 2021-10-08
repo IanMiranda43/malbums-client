@@ -6,7 +6,8 @@ import React, {
   useContext,
   useState,
 } from 'react';
-import { AuthContext, iUserRequest } from './AuthContext';
+import { iUserLogin, iUserRegister } from 'services/AuthRequestsService';
+import { useAuthContext } from './AuthContext';
 
 interface iAuthRequestContextProvider {
   children: React.ReactNode;
@@ -20,10 +21,7 @@ interface iHandlePasswordMatch {
 interface iAuthRequestContext extends iHandlePasswordMatch {
   passwordError?: string;
   formError?: string;
-  handleSubmit: (
-    e: FormEvent<HTMLFormElement>,
-    registerPage: boolean | undefined,
-  ) => Promise<void> | undefined;
+  handleSubmit: (e: FormEvent<HTMLFormElement>, registerPage?: boolean) => void;
 }
 
 export const AuthRequestContext = createContext({} as iAuthRequestContext);
@@ -59,27 +57,26 @@ function handlePasswordMatch({
 export function AuthRequestContextProvider({
   children,
 }: iAuthRequestContextProvider) {
+  const { handleCreateAccount, handleSingIn } = useAuthContext();
   const [passwordError, setPasswordError] = useState<string>();
   const [formError, setFormError] = useState<string>();
-  const { handleSingIn } = useContext(AuthContext);
 
   async function handleSubmit(
     e: FormEvent<HTMLFormElement>,
-    registerPage: boolean | undefined,
+    registerPage?: boolean,
   ) {
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
-    const userData = Object.fromEntries(formData) as unknown as iUserRequest;
+    const userData = Object.fromEntries(formData) as unknown;
 
-    if (
-      registerPage &&
-      !handlePasswordMatch({ setFormError, setPasswordError })
-    ) {
-      return;
+    if (!registerPage) {
+      return handleSingIn(userData as iUserLogin);
     }
 
-    return await handleSingIn(userData);
+    if (handlePasswordMatch({ setFormError, setPasswordError })) {
+      return handleCreateAccount(userData as iUserRegister);
+    }
   }
 
   return (

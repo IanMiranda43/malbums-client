@@ -9,12 +9,8 @@ export const Container = styled.div`
   width: 100%;
 
   align-items: center;
-
-  @media (min-width: 551px) {
-    height: 100%;
-    border-radius: 25px;
-    background: var(--gray);
-  }
+  border-radius: 25px;
+  background: var(--gray);
 `;
 
 export const Body = styled.div`
@@ -27,11 +23,6 @@ export const Body = styled.div`
 
   > strong {
     font-size: 20px;
-  }
-
-  @media (max-width: 550px) {
-    border-radius: 25px;
-    background: var(--gray);
   }
 `;
 

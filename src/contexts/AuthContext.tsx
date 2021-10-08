@@ -1,33 +1,28 @@
-import React, {
-  createContext,
-  Dispatch,
-  SetStateAction,
-  useContext,
-  useEffect,
-  useState,
-} from 'react';
+import React, { createContext, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import { AuthRequestContext } from './AuthRequestContext';
+import usePersistedState from 'hooks/usePersistedState';
+// import { useAuthRequestContext } from './AuthRequestContext';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import AuthRequestsService, {
+  iUserLogin,
+  iUserRegister,
+  iUserResponse,
+} from 'services/AuthRequestsService';
 
 interface iAuthContextProvider {
   children: React.ReactNode;
 }
 
-export interface iUserRequest {
-  username?: string;
-  email: string;
-  password: string;
-  confirmPassword?: string;
-}
+type iUser = iUserResponse | undefined;
 
-type iUser = iUserRequest | undefined | null;
+type tokenType = string | undefined;
 
 interface iAuthContext {
-  token: string;
-  setToken: Dispatch<SetStateAction<string>>;
-  user: iUser;
-  handleSingIn: (userData: iUserRequest) => Promise<void>;
+  token: tokenType;
+  userData: iUser;
+  handleCreateAccount: (userData: iUserRegister) => Promise<void>;
+  handleSingIn: (userData: iUserLogin) => Promise<void>;
   handleSingOut: () => Promise<void>;
 }
 
@@ -37,50 +32,75 @@ export function useAuthContext() {
   return useContext(AuthContext);
 }
 
-function checkLocalStorageUser() {
-  const storedUser = localStorage.getItem('user');
-
-  if (storedUser) return JSON.parse(storedUser);
-}
-
 export function AuthContextProvider({ children }: iAuthContextProvider) {
-  const [user, setUser] = useState<iUser>(checkLocalStorageUser);
-  const [token, setToken] = useState<string>('');
-  const { setFormError } = useContext(AuthRequestContext);
+  const [userData, setUserData] = usePersistedState<iUser>('user', undefined);
+  const [token, setToken] = usePersistedState<tokenType>('token', undefined);
+  // const { setFormError } = useAuthRequestContext();
+  // const api = new AuthRequestsService();
   const history = useHistory();
 
-  useEffect(() => {
-    if (user) {
-      localStorage.setItem('user', JSON.stringify(user));
-    }
-    if (user === null) {
-      localStorage.removeItem('user');
-    }
-  }, [user]);
+  async function handleCreateAccount(userReq: iUserRegister) {
+    // const { status, user, message } = await api.register(userReq);
 
-  async function handleSingIn(userData: iUserRequest) {
-    const response = {} as { status: number; message: string };
+    // if (status !== 'success') {
+    //   setFormError(message);
+    // }
 
-    if (response?.status === 401) {
-      setFormError(response.message);
-    }
+    const user = {
+      id: 'string',
+      token: 'string',
+      username: userReq?.username,
+      email: userReq?.email,
+      created_at: 'string',
+      updated_at: 'string',
+    };
 
-    setUser(userData);
-    history.push('/app');
+    setUserData(user);
+    setToken(user?.token);
+
+    return history.push('/app');
+  }
+
+  async function handleSingIn(userReq: iUserLogin) {
+    // const { status, user, message } = await api.login(userReq);
+
+    // if (status !== 'success') {
+    //   setFormError(message);
+    // }
+
+    const user = {
+      id: 'string',
+      token: 'string',
+      username: 'string',
+      email: userReq?.email,
+      created_at: 'string',
+      updated_at: 'string',
+    };
+
+    setUserData(user);
+    setToken(user?.token);
+
+    return history.push('/app');
   }
 
   async function handleSingOut() {
-    const response = true;
+    const res = true;
 
-    if (response) {
-      setUser(undefined);
+    if (res) {
+      localStorage.clear();
       history.replace('/login');
     }
   }
 
   return (
     <AuthContext.Provider
-      value={{ token, setToken, user, handleSingIn, handleSingOut }}
+      value={{
+        token,
+        userData,
+        handleCreateAccount,
+        handleSingIn,
+        handleSingOut,
+      }}
     >
       {children}
     </AuthContext.Provider>

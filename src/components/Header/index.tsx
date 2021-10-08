@@ -9,7 +9,7 @@ interface iHeader {
 }
 
 function Header({ handleButton }: iHeader) {
-  const { user } = useAuthContext();
+  const { userData } = useAuthContext();
   const history = useHistory();
   const { pathname } = history.location;
   const [title, setTitle] = useState<string>();
@@ -38,7 +38,7 @@ function Header({ handleButton }: iHeader) {
 
       <Title>
         <strong>{title}</strong>
-        <span>{user?.username}</span>
+        <span>{userData?.username}</span>
       </Title>
     </Container>
   );

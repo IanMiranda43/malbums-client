@@ -2,7 +2,7 @@ import React from 'react';
 
 import Header from 'components/Header';
 import Body from 'components/Body';
-import AddFirstAlbum from 'components/AddFirstAlbum';
+import AlbumsList from 'components/AlbumsList';
 
 function AlbumsListPage() {
   return (
@@ -10,7 +10,7 @@ function AlbumsListPage() {
       <Header />
 
       <Body>
-        <AddFirstAlbum />
+        <AlbumsList />
       </Body>
     </>
   );

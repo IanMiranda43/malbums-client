@@ -10,89 +10,75 @@ export interface iUserResponse {
   updated_at: string;
 }
 
-interface iApiResponse {
+export interface iApiResponse {
   status: string;
-  user: iUserResponse;
+  user?: iUserResponse;
   message?: string;
 }
 
-interface iUserLogin {
+export interface iUserLogin {
   email: string;
   password: string;
 }
 
-interface iUserRegister extends iUserLogin {
+export interface iUserRegister extends iUserLogin {
   username: string;
   confirmPassword: string;
 }
 
 type AxiosApiResponse = AxiosResponse<iApiResponse>;
 
-function handleErrors(data: iApiResponse) {
-  const { status, message } = data;
+function handleTokenError(res: AxiosApiResponse) {
+  const { status, data } = res;
 
-  if (status === 'error' && message === 'Invalid token') {
-    return window.location.reload();
+  if (status !== 200) {
+    if (data.status === 'error' && data.message === 'Invalid token') {
+      return window.location.reload();
+    }
   }
 }
 
 class AuthRequestsService {
-  async register(userRequest: iUserRegister): Promise<iUserResponse | false> {
-    const { status, data } = (await apiConnection.post(
+  constructor(private api = apiConnection()) {}
+
+  async register(userRequest: iUserRegister): Promise<iApiResponse> {
+    const res = (await this.api.post(
       '/register',
       userRequest,
     )) as AxiosApiResponse;
 
-    handleErrors(data);
+    handleTokenError(res);
 
-    if (status !== 201 && data.status !== 'success') {
-      return false;
-    }
-
-    return data.user;
+    return res.data;
   }
 
-  async login(userRequest: iUserLogin): Promise<iUserResponse | false> {
-    const { status, data } = (await apiConnection.post(
+  async login(userRequest: iUserLogin): Promise<iApiResponse> {
+    const res = (await this.api.post(
       '/authenticate',
       userRequest,
     )) as AxiosApiResponse;
 
-    handleErrors(data);
+    handleTokenError(res);
 
-    if (status !== 200 && data.status !== 'success') {
-      return false;
-    }
-
-    return data.user;
+    return res.data;
   }
 
-  async logout(): Promise<boolean> {
-    const { status, data } = (await apiConnection.get(
-      '/logout',
-    )) as AxiosApiResponse;
+  async logout(): Promise<iApiResponse> {
+    const res = (await this.api.get('/logout')) as AxiosApiResponse;
 
-    handleErrors(data);
+    handleTokenError(res);
 
-    if (status !== 200 && data.status !== 'success') {
-      return false;
-    }
-
-    return true;
+    return res.data;
   }
 
-  async delete(userRequest: iUserLogin): Promise<boolean> {
-    const { status, data } = (await apiConnection.delete('/authenticate', {
+  async delete(userRequest: iUserLogin): Promise<iApiResponse> {
+    const res = (await this.api.delete('/authenticate', {
       data: userRequest,
     })) as AxiosApiResponse;
 
-    handleErrors(data);
+    handleTokenError(res);
 
-    if (status !== 200 && data.status !== 'success') {
-      return false;
-    }
-
-    return true;
+    return res.data;
   }
 }
 

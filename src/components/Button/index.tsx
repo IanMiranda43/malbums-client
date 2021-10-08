@@ -15,6 +15,7 @@ const Button = styled.button<iButton>`
   font-weight: bold;
   font-size: 15px;
   white-space: nowrap;
+  text-overflow: ellipsis ellipsis;
 
   background: ${(props) => (props.outlined ? 'transparent' : 'var(--primary)')};
   color: ${(props) => (props.outlined ? 'var(--primary)' : 'var(--white)')};
@@ -26,6 +27,13 @@ const Button = styled.button<iButton>`
 
   &:active {
     opacity: 0.8;
+  }
+
+  &.danger {
+    border: 2px solid var(--danger);
+    background: ${(props) =>
+      props.outlined ? 'transparent' : 'var(--danger)'};
+    color: ${(props) => (props.outlined ? 'var(--danger)' : 'var(--white)')};
   }
 `;
 
