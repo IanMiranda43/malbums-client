@@ -13,7 +13,7 @@ function Register() {
         input={{
           id: 'inputName',
           name: 'username',
-          placeholder: 'Type your Name',
+          placeholder: 'Type your name',
         }}
       />
 
