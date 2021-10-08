@@ -15,11 +15,11 @@ function Header({ handleButton }: iHeader) {
   const [title, setTitle] = useState<string>();
 
   useEffect(() => {
-    if (pathname === '/create') {
-      setTitle('Create your CD');
-    } else if (pathname === '/list') {
+    if (pathname === '/app/create') {
+      setTitle('Create an new CD');
+    } else if (pathname === '/app/list') {
       setTitle('My CD`s list');
-    } else if (pathname === '/first-album') {
+    } else if (pathname === '/app/first-album') {
       setTitle('Create your first CD');
     } else {
       setTitle('Welcome to Malbums');
