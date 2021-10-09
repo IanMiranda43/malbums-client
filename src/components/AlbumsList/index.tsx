@@ -30,7 +30,7 @@ function AlbumsList() {
 
             <Item>
               <span>Genre:</span>
-              <strong>{genre}fdjlkfjskldfjl</strong>
+              <strong>{genre}</strong>
             </Item>
           </Details>
 
