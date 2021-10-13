@@ -1,7 +1,6 @@
-import React, { ReactNode, useEffect } from 'react';
+import React, { FormHTMLAttributes, ReactNode } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import { useAuthRequestContext } from 'contexts/AuthRequestContext';
 import Button from 'components/Button';
 
 import {
@@ -17,18 +16,19 @@ import {
 interface iAuthCard {
   children: ReactNode;
   title: string;
-  registerPage?: boolean;
+  registerPage: boolean;
+  formAttr: FormHTMLAttributes<HTMLElement>;
+  formError?: string;
 }
 
-function AuthCard({ children, title, registerPage }: iAuthCard) {
-  const { formError, setFormError, setPasswordError, handleSubmit } =
-    useAuthRequestContext();
+function AuthCard({
+  children,
+  title,
+  registerPage,
+  formAttr,
+  formError,
+}: iAuthCard) {
   const history = useHistory();
-
-  useEffect(() => {
-    setFormError();
-    setPasswordError();
-  }, []);
 
   return (
     <Container>
@@ -37,10 +37,7 @@ function AuthCard({ children, title, registerPage }: iAuthCard) {
           <h2>{title}</h2>
         </Title>
 
-        <Form
-          autoComplete="off"
-          onSubmit={(e) => handleSubmit(e, registerPage)}
-        >
+        <Form autoComplete="off" {...formAttr}>
           <Inputs>
             {children}
 

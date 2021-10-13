@@ -1,19 +1,15 @@
-import React from 'react';
+import React, { InputHTMLAttributes, RefObject } from 'react';
 
 import Input from 'components/Input';
 
 import { Container, InputError } from './styles';
 
+interface iInput extends InputHTMLAttributes<HTMLInputElement> {
+  ref?: RefObject<HTMLInputElement>;
+}
+
 interface iInputGroup {
-  input: {
-    type?: string;
-    id: string;
-    name: string;
-    placeholder?: string;
-    minLength?: number;
-    maxLength?: number;
-    className?: string;
-  };
+  input: iInput;
   errorLabel?: {
     errorLabelId: string;
     errorMessage: string;

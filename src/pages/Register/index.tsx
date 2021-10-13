@@ -1,14 +1,49 @@
-import React from 'react';
+import React, { createRef, FormEvent, useEffect, useState } from 'react';
 
 import AuthCard from 'components/AuthCard';
 import InputGroup from 'components/InputGroup';
-import { useAuthRequestContext } from 'contexts/AuthRequestContext';
+import { useAuthContext } from 'contexts/AuthContext';
+import { iUserRegister } from 'services/AuthRequestsService';
+import useFormData from 'hooks/useFormData';
 
 function Register() {
-  const { passwordError } = useAuthRequestContext();
+  const { handleCreateAccount } = useAuthContext();
+  const [formError, setFormError] = useState<string | undefined>();
+  const [passwordError, setPasswordError] = useState<string | undefined>();
+  const passwordRef = createRef<HTMLInputElement>();
+  const confirmPasswordRef = createRef<HTMLInputElement>();
+
+  useEffect(() => {
+    setFormError('');
+    setPasswordError('');
+  }, []);
+
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+
+    const passwordInput = passwordRef.current?.value;
+    const confirmPasswordInput = confirmPasswordRef.current?.value;
+
+    if (passwordInput === confirmPasswordInput) {
+      const userData = useFormData<iUserRegister>(e.currentTarget);
+
+      setFormError('');
+      setPasswordError('');
+
+      return handleCreateAccount(userData);
+    }
+
+    setPasswordError('error');
+    setFormError('Passwords need to match');
+  }
 
   return (
-    <AuthCard title="Create your Malbums account" registerPage>
+    <AuthCard
+      title="Create your Malbums account"
+      registerPage
+      formAttr={{ onSubmit: handleSubmit }}
+      formError={formError}
+    >
       <InputGroup
         input={{
           id: 'inputName',
@@ -34,6 +69,7 @@ function Register() {
           placeholder: 'Type an password',
           minLength: 8,
           className: passwordError,
+          ref: passwordRef,
         }}
       />
 
@@ -45,6 +81,7 @@ function Register() {
           placeholder: 'Type the same password again',
           minLength: 8,
           className: passwordError,
+          ref: confirmPasswordRef,
         }}
       />
     </AuthCard>

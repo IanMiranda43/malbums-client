@@ -6,15 +6,12 @@ import GlobalStyles from 'styles/GlobalStyles';
 import { AuthContextProvider } from 'contexts/AuthContext';
 import { NavigationContextProvider } from 'contexts/NavigationContext';
 import { AuthenticationRoutesGroup, PrivateRoutesGroup } from './routes';
-import { AuthRequestContextProvider } from 'contexts/AuthRequestContext';
 
 function App() {
   return (
     <BrowserRouter>
       <AuthContextProvider>
-        <AuthRequestContextProvider>
-          <AuthenticationRoutesGroup />
-        </AuthRequestContextProvider>
+        <AuthenticationRoutesGroup />
 
         <NavigationContextProvider>
           <PrivateRoutesGroup />
