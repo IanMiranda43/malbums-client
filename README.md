@@ -3,7 +3,7 @@
 	malbums-client
 </h1>
 
-### Access running project on Vercel [ianmiranda-malbums-client.vercel.app](https://ianmiranda-malbums-client.vercel.app/)
+### Access running project on Vercel [ianmiranda-malbums.vercel.app](https://ianmiranda-malbums.vercel.app/)
 
 <br>
 
