@@ -7,7 +7,7 @@ interface iButton {
 const Button = styled.button<iButton>`
   display: flex;
   align-items: center;
-  text-align: center;
+  justify-content: center;
   border-radius: 25px;
   padding: 10px min(30px, max(10px, 10vw));
   border: 2px solid var(--primary);
