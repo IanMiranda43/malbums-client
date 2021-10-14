@@ -26,13 +26,13 @@ interface iAuthContext {
   handleSingOut: () => Promise<void>;
 }
 
-export const AuthContext = createContext({} as iAuthContext);
+const AuthContext = createContext({} as iAuthContext);
 
-export function useAuthContext() {
+function useAuthContext() {
   return useContext(AuthContext);
 }
 
-export function AuthContextProvider({ children }: iAuthContextProvider) {
+function AuthContextProvider({ children }: iAuthContextProvider) {
   const [userData, setUserData] = usePersistedState<iUser>('user', undefined);
   const [token, setToken] = usePersistedState<tokenType>('token', undefined);
   // const { setFormError } = useAuthRequestContext();
@@ -106,3 +106,5 @@ export function AuthContextProvider({ children }: iAuthContextProvider) {
     </AuthContext.Provider>
   );
 }
+
+export { AuthContext, useAuthContext, AuthContextProvider };

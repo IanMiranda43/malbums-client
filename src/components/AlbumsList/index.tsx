@@ -1,5 +1,9 @@
 import React from 'react';
 
+import { usePrivateContext } from 'contexts/PrivateContext';
+import { iAlbumResponse } from 'services/AlbumsRequestsService';
+import EditAlbum from 'components/EditAlbum';
+
 import {
   Container,
   Album,
@@ -12,6 +16,15 @@ import {
 } from './styles';
 
 function AlbumsList() {
+  const { setModal } = usePrivateContext();
+
+  function handleEditAlbum(album: iAlbumResponse) {
+    setModal({
+      title: `Edit CD ${album.name}`,
+      children: <EditAlbum album={album} />,
+    });
+  }
+
   const albumsList = albums.map((album) => {
     const { id, name, artist, year, genre, total_time, created_at } = album;
 
@@ -52,7 +65,7 @@ function AlbumsList() {
         </Body>
 
         <Actions>
-          <EditButton>Edit</EditButton>
+          <EditButton onClick={() => handleEditAlbum(album)}>Edit</EditButton>
           <DeleteButton outlined className="danger">
             Delete
           </DeleteButton>
@@ -75,6 +88,7 @@ const albums = [
     genre: 'Folk',
     total_time: 43,
     created_at: '08/09/2021',
+    updated_at: '08/09/2021',
   },
   {
     id: '2',
@@ -84,6 +98,7 @@ const albums = [
     genre: 'Dance music',
     total_time: 59,
     created_at: '08/09/2021',
+    updated_at: '08/09/2021',
   },
   {
     id: '3',
@@ -93,6 +108,7 @@ const albums = [
     genre: 'Latin music',
     total_time: 55,
     created_at: '08/09/2021',
+    updated_at: '08/09/2021',
   },
   {
     id: '4',
@@ -102,6 +118,7 @@ const albums = [
     genre: 'Eletronic',
     total_time: 2,
     created_at: '08/09/2021',
+    updated_at: '08/09/2021',
   },
   {
     id: '5',
@@ -111,6 +128,7 @@ const albums = [
     genre: 'Folk',
     total_time: 22,
     created_at: '08/09/2021',
+    updated_at: '08/09/2021',
   },
   {
     id: '6',
@@ -120,6 +138,7 @@ const albums = [
     genre: 'Pop music',
     total_time: 43,
     created_at: '08/09/2021',
+    updated_at: '08/09/2021',
   },
   {
     id: '7',
@@ -129,6 +148,7 @@ const albums = [
     genre: 'Rock / Pop',
     total_time: 112,
     created_at: '08/09/2021',
+    updated_at: '08/09/2021',
   },
   {
     id: '8',
@@ -138,5 +158,6 @@ const albums = [
     genre: 'Pop music',
     total_time: 30,
     created_at: '08/09/2021',
+    updated_at: '08/09/2021',
   },
 ];

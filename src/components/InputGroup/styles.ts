@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
@@ -6,18 +6,16 @@ export const Container = styled.div`
   margin-bottom: 10px;
 `;
 
-const CSSErrorLabels = css`
-  display: none;
+export const Label = styled.label`
+  margin-bottom: 5px;
+  margin-left: 10px;
+  text-align: left;
+  font-size: 16px;
+`;
+
+export const InputError = styled.label`
   margin: 5px 0 10px;
   color: var(--danger);
   font-weight: bold;
   font-size: 15px;
-
-  &.active {
-    display: block;
-  }
-`;
-
-export const InputError = styled.label`
-  ${CSSErrorLabels}
 `;

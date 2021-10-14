@@ -11,15 +11,13 @@ interface iNavigationContextProvider {
   children: React.ReactNode;
 }
 
-export const NavigationContext = createContext({} as iNavigationContext);
+const NavigationContext = createContext({} as iNavigationContext);
 
-export function useNavigationContext() {
+function useNavigationContext() {
   return useContext(NavigationContext);
 }
 
-export function NavigationContextProvider({
-  children,
-}: iNavigationContextProvider) {
+function NavigationContextProvider({ children }: iNavigationContextProvider) {
   const { pathname } = useLocation();
   const [NavHomeBtn, setNavHomeBtn] = useState<string>('active');
   const [NavListBtn, setNavListBtn] = useState<string>();
@@ -51,3 +49,5 @@ export function NavigationContextProvider({
     </NavigationContext.Provider>
   );
 }
+
+export { NavigationContext, useNavigationContext, NavigationContextProvider };
