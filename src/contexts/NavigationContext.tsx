@@ -1,10 +1,15 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
+import { useAuthContext } from './AuthContext';
+import { usePrivateContext } from './PrivateContext';
+import ConfirmationCard from 'components/ConfirmationCard';
+
 interface iNavigationContext {
   NavHomeBtn: string | undefined;
   NavListBtn: string | undefined;
   NavCreateBtn: string | undefined;
+  handleSingOutClick: () => any;
 }
 
 interface iNavigationContextProvider {
@@ -18,6 +23,8 @@ function useNavigationContext() {
 }
 
 function NavigationContextProvider({ children }: iNavigationContextProvider) {
+  const { handleSingOut } = useAuthContext();
+  const { setModal } = usePrivateContext();
   const { pathname } = useLocation();
   const [NavHomeBtn, setNavHomeBtn] = useState<string>('active');
   const [NavListBtn, setNavListBtn] = useState<string>();
@@ -37,12 +44,25 @@ function NavigationContextProvider({ children }: iNavigationContextProvider) {
     }
   }, [pathname]);
 
+  function handleSingOutClick() {
+    setModal({
+      children: (
+        <ConfirmationCard
+          message="Did you want to sign out?"
+          smallMessage="You will need to sign in again"
+          callbackFunction={handleSingOut}
+        />
+      ),
+    });
+  }
+
   return (
     <NavigationContext.Provider
       value={{
         NavHomeBtn,
         NavListBtn,
         NavCreateBtn,
+        handleSingOutClick,
       }}
     >
       {children}

@@ -3,6 +3,7 @@ import React from 'react';
 import { usePrivateContext } from 'contexts/PrivateContext';
 import { iAlbumResponse } from 'api/AlbumsApi';
 import EditAlbum from 'components/EditAlbum';
+import ConfirmationCard from 'components/ConfirmationCard';
 
 import {
   Container,
@@ -29,12 +30,27 @@ function AlbumsList({ albums }: IAlbumsList) {
     });
   }
 
-  function handleDeleteAlbum(id: string) {
-    setAlbumsList(
-      albums.filter((album) => {
-        return album.id !== id;
-      }),
-    );
+  function handleDeleteAlbum(album: iAlbumResponse) {
+    const { id } = album;
+
+    const deleteAlbum = () => {
+      setAlbumsList(
+        albums.filter((album) => {
+          return album.id !== id;
+        }),
+      );
+      setModal(undefined);
+    };
+
+    setModal({
+      children: (
+        <ConfirmationCard
+          message={`Did you really want to delete the CD ${album.name}`}
+          smallMessage="You will not be able to turn back"
+          callbackFunction={deleteAlbum}
+        />
+      ),
+    });
   }
 
   const AlbumsList = albums.map((album) => {
@@ -81,7 +97,7 @@ function AlbumsList({ albums }: IAlbumsList) {
           <DeleteButton
             outlined
             className="danger"
-            onClick={() => handleDeleteAlbum(id)}
+            onClick={() => handleDeleteAlbum(album)}
           >
             Delete
           </DeleteButton>

@@ -6,3 +6,4 @@ export { List } from '@styled-icons/fluentui-system-filled';
 export { Plus } from '@styled-icons/heroicons-outline';
 export { Person } from '@styled-icons/bootstrap';
 export { ExitToApp } from '@styled-icons/material-twotone';
+export { CheckmarkDoneCircle } from '@styled-icons/ionicons-outline';

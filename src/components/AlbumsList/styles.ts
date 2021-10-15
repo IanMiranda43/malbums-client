@@ -89,10 +89,18 @@ export const Item = styled.div`
 
 export const EditButton = styled(Button)`
   margin-left: 20px;
+
+  @media (min-width: 821px) {
+    width: 100%;
+  }
 `;
 
 export const DeleteButton = styled(Button)`
   margin-left: auto;
+
+  @media (min-width: 821px) {
+    width: 100%;
+  }
 `;
 
 export const Actions = styled.div`

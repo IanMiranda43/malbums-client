@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { useNavigationContext } from 'contexts/NavigationContext';
-import { useAuthContext } from 'contexts/AuthContext';
 
 import {
   Container,
@@ -18,8 +17,8 @@ import {
 } from './styles';
 
 function NavBar() {
-  const { NavHomeBtn, NavListBtn, NavCreateBtn } = useNavigationContext();
-  const { handleSingOut } = useAuthContext();
+  const { NavHomeBtn, NavListBtn, NavCreateBtn, handleSingOutClick } =
+    useNavigationContext();
 
   return (
     <Container>
@@ -48,7 +47,7 @@ function NavBar() {
           <span>0 CD`s</span>
         </ProfileData>
 
-        <LogoutButton onClick={handleSingOut}>
+        <LogoutButton onClick={handleSingOutClick}>
           <LogoutIcon />
         </LogoutButton>
       </ProfileMenu>

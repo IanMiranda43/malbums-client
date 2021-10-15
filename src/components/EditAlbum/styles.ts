@@ -76,6 +76,10 @@ export const SubmitButton = styled(Button)`
     margin-left: 0;
     margin-top: 15px;
   }
+
+  &:disabled {
+    opacity: 0.5;
+  }
 `;
 
 export const Actions = styled.div`

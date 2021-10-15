@@ -8,10 +8,13 @@ const Button = styled.button<iButton>`
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+  width: max-content;
+
   border-radius: 25px;
   padding: 10px min(30px, max(10px, 10vw));
   border: 2px solid var(--primary);
-  overflow: hidden;
+
   font-weight: bold;
   font-size: 15px;
   white-space: nowrap;
