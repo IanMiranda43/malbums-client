@@ -1,10 +1,11 @@
 import React from 'react';
 
-import MenuBar from 'components/MenuBar';
-import BottomMenu from 'components/BottomMenu';
-
-import { Container, Wrapper, Main } from './styles';
+import NavBar from 'templates/NavBar';
+import Header from 'templates/Header';
+import BottomMenu from 'templates/BottomMenu';
 import Modal from 'components/Modal';
+
+import { Container, Wrapper, Main, Body } from './styles';
 
 interface iLayout {
   children: React.ReactNode;
@@ -14,10 +15,12 @@ function Layout({ children }: iLayout) {
   return (
     <Container>
       <Wrapper>
-        <MenuBar />
+        <NavBar />
 
         <Main>
-          {children}
+          <Header />
+
+          <Body>{children}</Body>
 
           <BottomMenu />
         </Main>

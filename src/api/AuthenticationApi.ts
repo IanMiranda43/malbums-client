@@ -1,5 +1,5 @@
 import { AxiosResponse } from 'axios';
-import { apiConnection } from '../adapters/apiConnection';
+import ApiConnection from './ApiConnection';
 
 export interface iUserResponse {
   id: string;
@@ -38,8 +38,8 @@ function handleTokenError(res: AxiosApiResponse) {
   }
 }
 
-class AuthRequestsService {
-  constructor(private api = apiConnection()) {}
+class AuthenticationApi {
+  constructor(private api = ApiConnection()) {}
 
   async register(userRequest: iUserRegister): Promise<iApiResponse> {
     const res = (await this.api.post(
@@ -82,4 +82,4 @@ class AuthRequestsService {
   }
 }
 
-export default AuthRequestsService;
+export default AuthenticationApi;

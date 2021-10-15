@@ -17,7 +17,7 @@ import {
   LogoutIcon,
 } from './styles';
 
-function MenuBar() {
+function NavBar() {
   const { NavHomeBtn, NavListBtn, NavCreateBtn } = useNavigationContext();
   const { handleSingOut } = useAuthContext();
 
@@ -56,4 +56,4 @@ function MenuBar() {
   );
 }
 
-export default MenuBar;
+export default NavBar;

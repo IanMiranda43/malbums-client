@@ -1,5 +1,5 @@
 import { AxiosResponse } from 'axios';
-import { apiConnection } from '../adapters/apiConnection';
+import ApiConnection from './ApiConnection';
 
 export interface iAlbum {
   name: string;
@@ -31,10 +31,10 @@ function handleErrors(data: iApiResponse) {
   }
 }
 
-class AlbumsRequestsService {
-  constructor(private api = apiConnection()) {}
+class AlbumsApi {
+  constructor(private api = ApiConnection()) {}
 
-  async createAlbum(newAlbum: iAlbum): Promise<iAlbumResponse | false> {
+  async create(newAlbum: iAlbum): Promise<iAlbumResponse | false> {
     const { status, data } = (await this.api.post(
       '/album',
       newAlbum,
@@ -49,4 +49,4 @@ class AlbumsRequestsService {
   }
 }
 
-export default AlbumsRequestsService;
+export default AlbumsApi;

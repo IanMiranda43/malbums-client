@@ -1,10 +1,10 @@
 import React, { FormEvent } from 'react';
 
-import { iUserLogin } from 'services/AuthRequestsService';
+import { useAuthContext } from 'contexts/AuthContext';
+import { iUserLogin } from 'api/AuthenticationApi';
+import getFormData from 'utils/getFormData';
 import AuthCard from 'components/AuthCard';
 import InputGroup from 'components/InputGroup';
-import { useAuthContext } from 'contexts/AuthContext';
-import useFormData from 'hooks/useFormData';
 
 function Login() {
   const { handleSingIn } = useAuthContext();
@@ -12,7 +12,7 @@ function Login() {
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    const userData = useFormData<iUserLogin>(e.currentTarget);
+    const userData = getFormData<iUserLogin>(e.currentTarget);
 
     return handleSingIn(userData);
   }

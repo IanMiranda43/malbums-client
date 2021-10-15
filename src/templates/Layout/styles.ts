@@ -29,3 +29,16 @@ export const Main = styled.div`
     padding-bottom: 62px;
   }
 `;
+
+export const Body = styled.div`
+  display: flex;
+  padding: 20px;
+
+  @media (max-width: 550px) {
+    margin: auto 0;
+  }
+
+  @media (min-width: 551px) {
+    padding: 40px;
+  }
+`;

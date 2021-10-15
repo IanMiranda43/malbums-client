@@ -1,18 +1,26 @@
 import React from 'react';
 
-import HomeCard from 'components/HomeCard';
-import Header from 'components/Header';
-import Body from 'components/Body';
+import { Container, Card, PlusButton, ListIcon, PlusIcon } from './styles';
 
 function HomePage() {
   return (
-    <>
-      <Header />
+    <Container>
+      <Card>
+        <strong>Create an new CD</strong>
 
-      <Body>
-        <HomeCard />
-      </Body>
-    </>
+        <PlusButton to="/app/create">
+          <PlusIcon />
+        </PlusButton>
+      </Card>
+
+      <Card>
+        <strong>List my CD`s</strong>
+
+        <PlusButton to="/app/list">
+          <ListIcon />
+        </PlusButton>
+      </Card>
+    </Container>
   );
 }
 

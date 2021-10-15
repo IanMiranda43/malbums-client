@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useAuthContext } from 'contexts/AuthContext';
 
-export const apiConnection = () => {
+export default function ApiConnection() {
   const { token } = useAuthContext();
 
   return axios.create({
@@ -10,4 +10,4 @@ export const apiConnection = () => {
       Authorization: `Bearer ${token}`,
     },
   });
-};
+}

@@ -1,10 +1,10 @@
 import React, { createRef, FormEvent, useEffect, useState } from 'react';
 
+import { useAuthContext } from 'contexts/AuthContext';
+import { iUserRegister } from 'api/AuthenticationApi';
+import getFormData from 'utils/getFormData';
 import AuthCard from 'components/AuthCard';
 import InputGroup from 'components/InputGroup';
-import { useAuthContext } from 'contexts/AuthContext';
-import { iUserRegister } from 'services/AuthRequestsService';
-import useFormData from 'hooks/useFormData';
 
 function Register() {
   const { handleCreateAccount } = useAuthContext();
@@ -25,7 +25,7 @@ function Register() {
     const confirmPasswordInput = confirmPasswordRef.current?.value;
 
     if (passwordInput === confirmPasswordInput) {
-      const userData = useFormData<iUserRegister>(e.currentTarget);
+      const userData = getFormData<iUserRegister>(e.currentTarget);
 
       setFormError('');
       setPasswordError('');

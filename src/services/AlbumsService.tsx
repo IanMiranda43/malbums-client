@@ -1,7 +1,7 @@
 import React from 'react';
 import usePersistedState from 'hooks/usePersistedState';
 import { useHistory } from 'react-router-dom';
-import AlbumsRequestsService, { iAlbumResponse } from './AlbumsRequestsService';
+import AlbumsRequestsService, { iAlbumResponse } from 'api/AlbumsApi';
 
 type albumsListType = iAlbumResponse[] | undefined;
 
@@ -13,7 +13,7 @@ export async function createAlbum(newAlbum: iAlbumResponse) {
     undefined,
   );
 
-  const album = await api.createAlbum(newAlbum);
+  const album = await api.create(newAlbum);
 
   if (album) {
     if (albumsList && albumsList.length > 0) {

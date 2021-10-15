@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { usePrivateContext } from 'contexts/PrivateContext';
-import { iAlbumResponse } from 'services/AlbumsRequestsService';
+import { iAlbumResponse } from 'api/AlbumsApi';
 import EditAlbum from 'components/EditAlbum';
 
 import {
