@@ -1,4 +1,3 @@
-import React from 'react';
 import usePersistedState from 'hooks/usePersistedState';
 import { useHistory } from 'react-router-dom';
 import AlbumsRequestsService, { iAlbumResponse } from 'api/AlbumsApi';

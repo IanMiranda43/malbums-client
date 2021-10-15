@@ -8,10 +8,9 @@ import {
 
 import { useAuthContext } from 'contexts/AuthContext';
 
+import Layout from 'templates/Layout';
 import Login from 'pages/Login';
 import Register from 'pages/Register';
-
-import Layout from 'templates/Layout';
 import HomePage from 'pages/HomePage';
 import FirstAlbumPage from 'pages/FirstAlbumPage';
 import CreateAlbumPage from 'pages/CreateAlbumPage';

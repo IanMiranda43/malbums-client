@@ -16,7 +16,7 @@ function Register() {
   useEffect(() => {
     setFormError('');
     setPasswordError('');
-  }, []);
+  });
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
