@@ -22,7 +22,7 @@ export default function usePersistedState<T>(
     } else {
       localStorage.removeItem(key);
     }
-  }, [state]);
+  }, [key, state]);
 
   return [state, setState];
 }

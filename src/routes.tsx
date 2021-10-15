@@ -12,7 +12,6 @@ import Layout from 'templates/Layout';
 import Login from 'pages/Login';
 import Register from 'pages/Register';
 import HomePage from 'pages/HomePage';
-import FirstAlbumPage from 'pages/FirstAlbumPage';
 import CreateAlbumPage from 'pages/CreateAlbumPage';
 import AlbumsListPage from 'pages/AlbumsListPage';
 
@@ -44,8 +43,6 @@ export function PrivateRoutesGroup() {
     <PrivateRoute path={url}>
       <Layout>
         <Route path={`${url}/`} exact component={HomePage} />
-
-        <Route path={`${url}/first-album`} component={FirstAlbumPage} />
 
         <Route path={`${url}/create`} component={CreateAlbumPage} />
 

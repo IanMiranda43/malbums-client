@@ -15,8 +15,12 @@ import {
   DeleteButton,
 } from './styles';
 
-function AlbumsList() {
-  const { setModal } = usePrivateContext();
+interface IAlbumsList {
+  albums: iAlbumResponse[];
+}
+
+function AlbumsList({ albums }: IAlbumsList) {
+  const { setModal, setAlbumsList } = usePrivateContext();
 
   function handleEditAlbum(album: iAlbumResponse) {
     setModal({
@@ -25,7 +29,15 @@ function AlbumsList() {
     });
   }
 
-  const albumsList = albums.map((album) => {
+  function handleDeleteAlbum(id: string) {
+    setAlbumsList(
+      albums.filter((album) => {
+        return album.id !== id;
+      }),
+    );
+  }
+
+  const AlbumsList = albums.map((album) => {
     const { id, name, artist, year, genre, total_time, created_at } = album;
 
     return (
@@ -66,7 +78,11 @@ function AlbumsList() {
 
         <Actions>
           <EditButton onClick={() => handleEditAlbum(album)}>Edit</EditButton>
-          <DeleteButton outlined className="danger">
+          <DeleteButton
+            outlined
+            className="danger"
+            onClick={() => handleDeleteAlbum(id)}
+          >
             Delete
           </DeleteButton>
         </Actions>
@@ -74,90 +90,7 @@ function AlbumsList() {
     );
   });
 
-  return <Container>{albumsList}</Container>;
+  return <Container>{AlbumsList}</Container>;
 }
 
 export default AlbumsList;
-
-const albums = [
-  {
-    id: '1',
-    name: 'Goin` Back',
-    artist: 'WILD',
-    year: 2021,
-    genre: 'Folk',
-    total_time: 43,
-    created_at: '08/09/2021',
-    updated_at: '08/09/2021',
-  },
-  {
-    id: '2',
-    name: 'Mind Of Mine',
-    artist: 'ZAYN',
-    year: 2016,
-    genre: 'Dance music',
-    total_time: 59,
-    created_at: '08/09/2021',
-    updated_at: '08/09/2021',
-  },
-  {
-    id: '3',
-    name: 'Corazón',
-    artist: 'Fonseca',
-    year: 2005,
-    genre: 'Latin music',
-    total_time: 55,
-    created_at: '08/09/2021',
-    updated_at: '08/09/2021',
-  },
-  {
-    id: '4',
-    name: 'Where Are You Now',
-    artist: 'Lost Frequencies feat Calum Scott',
-    year: 2021,
-    genre: 'Eletronic',
-    total_time: 2,
-    created_at: '08/09/2021',
-    updated_at: '08/09/2021',
-  },
-  {
-    id: '5',
-    name: 'Sage and Stone',
-    artist: 'Acriel & the Sequoias',
-    year: 2017,
-    genre: 'Folk',
-    total_time: 22,
-    created_at: '08/09/2021',
-    updated_at: '08/09/2021',
-  },
-  {
-    id: '6',
-    name: 'Evolve',
-    artist: 'Imagine Dragons',
-    year: 2017,
-    genre: 'Pop music',
-    total_time: 43,
-    created_at: '08/09/2021',
-    updated_at: '08/09/2021',
-  },
-  {
-    id: '7',
-    name: 'Acústico Jota Quest',
-    artist: 'Jote Quest',
-    year: 2017,
-    genre: 'Rock / Pop',
-    total_time: 112,
-    created_at: '08/09/2021',
-    updated_at: '08/09/2021',
-  },
-  {
-    id: '8',
-    name: 'LABRINTH, SIA & DIPLO PRESENT... LSD',
-    artist: 'Sia, Diplo, Labrinth',
-    year: 2019,
-    genre: 'Pop music',
-    total_time: 30,
-    created_at: '08/09/2021',
-    updated_at: '08/09/2021',
-  },
-];

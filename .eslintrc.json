@@ -19,7 +19,8 @@
   },
   "plugins": [
     "react",
-    "@typescript-eslint"
+    "@typescript-eslint",
+    "react-hooks"
   ],
   "rules": {
     "@typescript-eslint/interface-name-prefix": "off",
@@ -31,6 +32,8 @@
     }],
     "linebreak-style": ["error", "unix"],
     "quotes": ["error", "single"],
-    "semi": ["error", "always"]
+    "semi": ["error", "always"],
+    "react-hooks/rules-of-hooks": "error", 
+    "react-hooks/exhaustive-deps": "error" 
   }
 }

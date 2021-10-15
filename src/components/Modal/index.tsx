@@ -17,7 +17,7 @@ function Modal() {
 
   useEffect(() => {
     setModal(undefined);
-  }, [pathname]);
+  }, [pathname, setModal]);
 
   function handleClose({ target }: MouseEvent<HTMLDivElement>) {
     const { current } = cardRef;

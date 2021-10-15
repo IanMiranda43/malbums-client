@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { usePrivateContext } from 'contexts/PrivateContext';
+import { iAlbum } from 'api/AlbumsApi';
 import InputGroup from 'components/InputGroup';
 
 import {
@@ -14,13 +15,7 @@ import {
 } from './styles';
 
 interface iEditAlbum {
-  album: {
-    name: string;
-    artist: string;
-    year: number;
-    genre: string;
-    total_time: number;
-  };
+  album: iAlbum;
 }
 
 function EditAlbum({ album }: iEditAlbum) {
