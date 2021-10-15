@@ -4,8 +4,12 @@ import Button from 'components/Button';
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
   align-items: center;
+  width: 100%;
+
+  @media (max-width: 550px) {
+    height: 80vh;
+  }
 `;
 
 export const Album = styled.div`
