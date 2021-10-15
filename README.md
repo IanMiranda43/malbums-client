@@ -12,6 +12,7 @@ Developed with React JS, `malbums-client` it's a music albums management system.
 ### The system use: 
 * `styled-components` for develop with CSS in JS
 * `styled-icons` as icons library 
+* `axios` to HTTP requests
 * `Typescript` as development 'language'
 * `Eslint` to code lint
 * `Prettier` to code style
