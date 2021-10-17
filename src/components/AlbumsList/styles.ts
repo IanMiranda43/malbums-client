@@ -4,8 +4,9 @@ import Button from 'components/Button';
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
   width: 100%;
+  height: max-content;
+  align-items: center;
 `;
 
 export const Album = styled.div`

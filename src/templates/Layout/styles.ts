@@ -34,6 +34,7 @@ export const Body = styled.div`
   display: flex;
   height: 100%;
   padding: 20px;
+  overflow: auto;
 
   @media (min-width: 551px) {
     padding: 40px;

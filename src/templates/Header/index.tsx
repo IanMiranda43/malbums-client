@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router';
+
 import { useAuthContext } from 'contexts/AuthContext';
-import { useHistory } from 'react-router';
 
 import { Container, BackButton, BackIcon, Title } from './styles';
 
@@ -10,8 +11,7 @@ interface IHeader {
 
 function Header({ handleButton }: IHeader) {
   const { userData } = useAuthContext();
-  const history = useHistory();
-  const { pathname } = history.location;
+  const { pathname } = useLocation();
   const [title, setTitle] = useState<string>();
 
   useEffect(() => {
