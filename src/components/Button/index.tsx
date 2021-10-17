@@ -24,8 +24,11 @@ const Button = styled.button<IButton>`
   color: ${(props) => (props.outlined ? 'var(--primary)' : 'var(--white)')};
 
   &:hover {
+    border: 2px solid var(--primary-hover);
     background: ${(props) =>
-      props.outlined ? 'var(--background-hover)' : 'var(--primary-hover)'};
+      props.outlined ? 'var(--transparent-hover)' : 'var(--primary-hover)'};
+    color: ${(props) =>
+      props.outlined ? 'var(--primary-hover)' : 'var(--white)'};
   }
 
   &:active {
@@ -37,6 +40,14 @@ const Button = styled.button<IButton>`
     background: ${(props) =>
       props.outlined ? 'transparent' : 'var(--danger)'};
     color: ${(props) => (props.outlined ? 'var(--danger)' : 'var(--white)')};
+
+    &:hover {
+      border: 2px solid var(--danger-hover);
+      background: ${(props) =>
+        props.outlined ? 'var(--transparent-hover)' : 'var(--danger-hover)'};
+      color: ${(props) =>
+        props.outlined ? 'var(--danger-hover)' : 'var(--white)'};
+    }
   }
 `;
 

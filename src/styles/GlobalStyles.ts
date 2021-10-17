@@ -13,6 +13,8 @@ export default createGlobalStyle`
 		--outline: #2F3336;
 		--green: #00C06B;
     --danger: #E8265E;
+    --danger-hover: #e7396b;
+    --transparent-hover: rgba(0,0,0,.1);
 	}
 
   * {
