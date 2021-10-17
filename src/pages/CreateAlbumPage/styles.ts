@@ -5,23 +5,11 @@ import Button from 'components/Button';
 export const Container = styled.div`
   display: flex;
   width: 100%;
+  margin: auto 0;
 
   align-items: center;
   justify-content: space-between;
   overflow-y: auto;
-
-  > div + div {
-    margin-left: 20px;
-  }
-
-  @media (max-width: 550px) {
-    flex-direction: column;
-
-    > div + div {
-      margin-left: 0;
-      margin-top: 20px;
-    }
-  }
 `;
 
 export const Form = styled.form`

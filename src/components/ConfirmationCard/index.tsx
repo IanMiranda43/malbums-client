@@ -1,9 +1,14 @@
 import React from 'react';
 
 import { usePrivateContext } from 'contexts/PrivateContext';
-import Button from 'components/Button';
 
-import { Container, Body, Buttons, CancelButton } from './styles';
+import {
+  Container,
+  Body,
+  Buttons,
+  ConfirmButton,
+  CancelButton,
+} from './styles';
 
 interface IConfirmationCard {
   message: string;
@@ -29,9 +34,9 @@ function ConfirmationCard({
         <CancelButton outlined onClick={() => setModal(undefined)}>
           Cancel
         </CancelButton>
-        <Button className="danger" onClick={callbackFunction}>
+        <ConfirmButton className="danger" onClick={callbackFunction}>
           Yes
-        </Button>
+        </ConfirmButton>
       </Buttons>
     </Container>
   );

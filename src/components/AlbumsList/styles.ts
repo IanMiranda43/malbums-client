@@ -6,10 +6,6 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
-
-  @media (max-width: 550px) {
-    height: 80vh;
-  }
 `;
 
 export const Album = styled.div`
@@ -23,6 +19,10 @@ export const Album = styled.div`
 
   @media (max-width: 820px) {
     flex-direction: column;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
   }
 `;
 

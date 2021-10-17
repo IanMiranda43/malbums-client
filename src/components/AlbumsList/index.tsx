@@ -34,8 +34,8 @@ function AlbumsList({ albums }: IAlbumsList) {
     const { id } = album;
 
     const deleteAlbum = () => {
-      setAlbumsList(
-        albums.filter((album) => {
+      setAlbumsList((oldAlbums) =>
+        oldAlbums?.filter((album) => {
           return album.id !== id;
         }),
       );

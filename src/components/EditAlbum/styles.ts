@@ -56,14 +56,13 @@ export const InputsCard = styled.div`
 export const Column = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100%;
-  width: 100%;
 `;
 
 export const CancelButton = styled(Button)`
   margin-left: auto;
 
   @media (max-width: 420px) {
+    width: 100%;
     margin-left: 0;
     margin-top: 15px;
   }
@@ -84,13 +83,13 @@ export const SubmitButton = styled(Button)`
 
 export const Actions = styled.div`
   display: flex;
-  width: 100%;
+  justify-content: center;
+  align-items: center;
+  width: max-content;
   margin-top: 20px;
 
   @media (max-width: 420px) {
-    width: max-content;
     flex-direction: column-reverse;
     margin: auto 0;
-    padding-left: 15px;
   }
 `;

@@ -6,6 +6,7 @@ import { PlusCircle, List } from 'styles/Icons';
 export const Container = styled.div`
   display: flex;
   width: 100%;
+  margin: auto 0;
 
   align-items: center;
   justify-content: space-between;

@@ -28,14 +28,19 @@ export const Body = styled.div`
 
 export const Buttons = styled.div`
   display: flex;
-  width: 100%;
+  width: max-content;
 
   align-items: center;
   justify-content: center;
+  margin: auto;
 
   @media (max-width: 315px) {
     flex-direction: column-reverse;
   }
+`;
+
+export const ConfirmButton = styled(Button)`
+  width: 100%;
 `;
 
 export const CancelButton = styled(Button)`
