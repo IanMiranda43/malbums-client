@@ -1,7 +1,7 @@
 import React, { FormEvent } from 'react';
 
 import { useAuthContext } from 'contexts/AuthContext';
-import { iUserLogin } from 'api/AuthenticationApi';
+import { IUserLogin } from 'api/AuthenticationApi';
 import getFormData from 'utils/getFormData';
 import AuthCard from 'components/AuthCard';
 import InputGroup from 'components/InputGroup';
@@ -12,7 +12,7 @@ function Login() {
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    const userData = getFormData<iUserLogin>(e.currentTarget);
+    const userData = getFormData<IUserLogin>(e.currentTarget);
 
     return handleSingIn(userData);
   }

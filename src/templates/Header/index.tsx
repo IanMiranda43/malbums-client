@@ -4,11 +4,11 @@ import { useHistory } from 'react-router';
 
 import { Container, BackButton, BackIcon, Title } from './styles';
 
-interface iHeader {
+interface IHeader {
   handleButton?: () => void;
 }
 
-function Header({ handleButton }: iHeader) {
+function Header({ handleButton }: IHeader) {
   const { userData } = useAuthContext();
   const history = useHistory();
   const { pathname } = history.location;

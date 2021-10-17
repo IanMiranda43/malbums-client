@@ -2,7 +2,7 @@ import React, { FormEvent } from 'react';
 import { useHistory } from 'react-router';
 
 import getFormData from 'utils/getFormData';
-import { iAlbum, iAlbumResponse } from 'api/AlbumsApi';
+import { IAlbum, IAlbumResponse } from 'api/AlbumsApi';
 import InputGroup from 'components/InputGroup';
 
 import { Container, Form, InputsCard, Column, SubmitButton } from './styles';
@@ -15,9 +15,9 @@ function CreateAlbumPage() {
   async function handleCreateAlbum(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    const albumData = getFormData<iAlbum>(e.currentTarget);
+    const albumData = getFormData<IAlbum>(e.currentTarget);
 
-    const newAlbum = albumData as iAlbumResponse;
+    const newAlbum = albumData as IAlbumResponse;
 
     newAlbum.id = Math.random().toString();
     newAlbum.created_at = new Date(

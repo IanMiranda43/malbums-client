@@ -8,20 +8,20 @@ import React, {
 } from 'react';
 
 import usePersistedState from 'hooks/usePersistedState';
-import { iAlbumResponse } from 'api/AlbumsApi';
-import { iModal } from 'components/Modal';
+import { IAlbumResponse } from 'api/AlbumsApi';
+import { IModal } from 'components/Modal';
 
-export type ModalType = iModal | undefined;
-export type AlbumsListType = iAlbumResponse[] | undefined;
+export type ModalType = IModal | undefined;
+export type AlbumsListType = IAlbumResponse[] | undefined;
 
-interface iPrivateContext {
+interface IPrivateContext {
   modal: ModalType;
   setModal: Dispatch<SetStateAction<ModalType>>;
   albumsList: AlbumsListType;
   setAlbumsList: Dispatch<SetStateAction<AlbumsListType>>;
 }
 
-const PrivateContext = createContext({} as iPrivateContext);
+const PrivateContext = createContext({} as IPrivateContext);
 
 function usePrivateContext() {
   return useContext(PrivateContext);

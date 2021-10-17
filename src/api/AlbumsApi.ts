@@ -1,32 +1,37 @@
 import { AxiosResponse } from 'axios';
+
 import ApiConnection from './ApiConnection';
 
-export interface iAlbum {
+export interface IAlbum {
   name: string;
   artist: string;
   year: number;
   genre: string;
   total_time: number;
 }
-
-export interface iAlbumResponse extends iAlbum {
+export interface IAlbumResponse extends IAlbum {
   id: string;
   created_at: string;
   updated_at: string;
 }
 
-interface iApiResponse {
+interface IApiResponse {
   status: string;
-  album: iAlbumResponse;
+  album?: IAlbumResponse;
   message?: string;
 }
 
-type AxiosApiResponse = AxiosResponse<iApiResponse>;
+type ResponseType = AxiosResponse<IApiResponse>;
 
-function handleErrors(data: iApiResponse) {
-  const { status, message } = data;
+function handleTokenError(response: ResponseType) {
+  const { status, data } = response;
 
-  if (status === 'error' && message === 'Invalid token') {
+  if (
+    status !== 200 &&
+    status !== 201 &&
+    data.status === 'error' &&
+    data.message === 'Invalid token'
+  ) {
     return window.location.reload();
   }
 }
@@ -34,18 +39,15 @@ function handleErrors(data: iApiResponse) {
 class AlbumsApi {
   constructor(private api = ApiConnection()) {}
 
-  async create(newAlbum: iAlbum): Promise<iAlbumResponse | false> {
-    const { status, data } = (await this.api.post(
+  async create(newAlbum: IAlbum): Promise<IApiResponse | false> {
+    const response = await this.api.post<IAlbum, ResponseType>(
       '/album',
       newAlbum,
-    )) as AxiosApiResponse;
+    );
 
-    if (status !== 200 && data.status !== 'success') {
-      handleErrors(data);
-      return false;
-    }
+    handleTokenError(response);
 
-    return data.album;
+    return response.data;
   }
 }
 

@@ -8,24 +8,24 @@ import Input from 'components/Input';
 
 import { Container, Label, InputError } from './styles';
 
-interface iInput extends InputHTMLAttributes<HTMLInputElement> {
+interface IInput extends InputHTMLAttributes<HTMLInputElement> {
   ref?: RefObject<HTMLInputElement>;
 }
 
-interface iLabel extends LabelHTMLAttributes<HTMLLabelElement> {
+interface ILabel extends LabelHTMLAttributes<HTMLLabelElement> {
   value?: string;
 }
 
-interface iInputGroup {
-  input: iInput;
-  label?: iLabel;
+interface IInputGroup {
+  input: IInput;
+  label?: ILabel;
   errorLabel?: {
     errorLabelId: string;
     errorMessage: string;
   };
 }
 
-function InputGroup({ input, label, errorLabel }: iInputGroup) {
+function InputGroup({ input, label, errorLabel }: IInputGroup) {
   return (
     <Container>
       {label ? <Label htmlFor={input.id}>{label.value}</Label> : null}

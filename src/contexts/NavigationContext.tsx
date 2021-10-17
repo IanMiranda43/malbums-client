@@ -5,24 +5,24 @@ import { useAuthContext } from './AuthContext';
 import { usePrivateContext } from './PrivateContext';
 import ConfirmationCard from 'components/ConfirmationCard';
 
-interface iNavigationContext {
+interface INavigationContext {
   NavHomeBtn: string | undefined;
   NavListBtn: string | undefined;
   NavCreateBtn: string | undefined;
   handleSingOutClick: () => any;
 }
 
-interface iNavigationContextProvider {
+interface INavigationContextProvider {
   children: React.ReactNode;
 }
 
-const NavigationContext = createContext({} as iNavigationContext);
+const NavigationContext = createContext({} as INavigationContext);
 
 function useNavigationContext() {
   return useContext(NavigationContext);
 }
 
-function NavigationContextProvider({ children }: iNavigationContextProvider) {
+function NavigationContextProvider({ children }: INavigationContextProvider) {
   const { handleSingOut } = useAuthContext();
   const { setModal } = usePrivateContext();
   const { pathname } = useLocation();

@@ -1,7 +1,7 @@
 import React, { FormEvent, useRef } from 'react';
 
 import { usePrivateContext } from 'contexts/PrivateContext';
-import { iAlbumResponse, iAlbum } from 'api/AlbumsApi';
+import { IAlbum, IAlbumResponse } from 'api/AlbumsApi';
 import getFormData from 'utils/getFormData';
 import SuccessCard from 'components/SuccessCard';
 import InputGroup from 'components/InputGroup';
@@ -16,19 +16,19 @@ import {
   SubmitButton,
 } from './styles';
 
-interface iEditAlbum {
-  album: iAlbumResponse;
+interface IEditAlbum {
+  album: IAlbumResponse;
 }
 
-function EditAlbum({ album }: iEditAlbum) {
-  const submitRef = useRef(null);
+function EditAlbum({ album }: IEditAlbum) {
+  const submitRef = useRef<HTMLButtonElement>(null);
   const { setModal, albumsList, setAlbumsList } = usePrivateContext();
   const { id, name, artist, year, genre, total_time } = album;
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    const albumData = getFormData(e.currentTarget) as iAlbum;
+    const albumData = getFormData<IAlbum>(e.currentTarget);
     const newAlbumData = { ...album, ...albumData };
 
     setAlbumsList(
@@ -37,7 +37,7 @@ function EditAlbum({ album }: iEditAlbum) {
           return newAlbumData;
         }
         return album;
-      }) as iAlbumResponse[],
+      }),
     );
 
     setModal({
@@ -50,17 +50,16 @@ function EditAlbum({ album }: iEditAlbum) {
   }
 
   function formChanges(e: FormEvent<HTMLFormElement>) {
-    const submitBtn = submitRef.current as unknown as HTMLButtonElement;
     const newAlbumData = getFormData(e.currentTarget);
 
     if (
       JSON.stringify({ name, artist, year, genre, total_time }) ===
       JSON.stringify(newAlbumData)
     ) {
-      return submitBtn.setAttribute('disabled', 'disabled');
+      return submitRef.current?.setAttribute('disabled', 'disabled');
     }
 
-    return submitBtn.removeAttribute('disabled');
+    return submitRef.current?.removeAttribute('disabled');
   }
 
   return (

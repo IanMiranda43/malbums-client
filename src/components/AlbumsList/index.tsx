@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { usePrivateContext } from 'contexts/PrivateContext';
-import { iAlbumResponse } from 'api/AlbumsApi';
+import { IAlbumResponse } from 'api/AlbumsApi';
 import EditAlbum from 'components/EditAlbum';
 import ConfirmationCard from 'components/ConfirmationCard';
 
@@ -17,20 +17,20 @@ import {
 } from './styles';
 
 interface IAlbumsList {
-  albums: iAlbumResponse[];
+  albums: IAlbumResponse[];
 }
 
 function AlbumsList({ albums }: IAlbumsList) {
   const { setModal, setAlbumsList } = usePrivateContext();
 
-  function handleEditAlbum(album: iAlbumResponse) {
+  function handleEditAlbum(album: IAlbumResponse) {
     setModal({
       title: `Edit CD ${album.name}`,
       children: <EditAlbum album={album} />,
     });
   }
 
-  function handleDeleteAlbum(album: iAlbumResponse) {
+  function handleDeleteAlbum(album: IAlbumResponse) {
     const { id } = album;
 
     const deleteAlbum = () => {

@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
-interface iInput {
+interface IInput {
   outlined?: boolean;
 }
 
-const Input = styled.input<iInput>`
+const Input = styled.input<IInput>`
   display: flex;
   align-items: center;
   width: 100%;

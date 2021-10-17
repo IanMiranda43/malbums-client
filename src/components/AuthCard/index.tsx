@@ -13,7 +13,7 @@ import {
   Buttons,
 } from './styles';
 
-interface iAuthCard {
+interface IAuthCard {
   children: ReactNode;
   title: string;
   registerPage: boolean;
@@ -27,7 +27,7 @@ function AuthCard({
   registerPage,
   formAttr,
   formError,
-}: iAuthCard) {
+}: IAuthCard) {
   const history = useHistory();
 
   return (

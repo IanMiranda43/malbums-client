@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
-interface iButton {
+interface IButton {
   outlined?: boolean;
 }
 
-const Button = styled.button<iButton>`
+const Button = styled.button<IButton>`
   display: flex;
   align-items: center;
   justify-content: center;

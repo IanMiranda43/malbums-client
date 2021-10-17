@@ -1,11 +1,11 @@
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 
-type iUsePersistedState<T> = [state: T, setState: Dispatch<SetStateAction<T>>];
+type IUsePersistedState<T> = [state: T, setState: Dispatch<SetStateAction<T>>];
 
 export default function usePersistedState<T>(
   key: string,
   value: T,
-): iUsePersistedState<T> {
+): IUsePersistedState<T> {
   const [state, setState] = useState<T>(() => {
     const storedState = localStorage.getItem(key);
 

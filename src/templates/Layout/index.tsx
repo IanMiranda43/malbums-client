@@ -7,11 +7,11 @@ import Modal from 'components/Modal';
 
 import { Container, Wrapper, Main, Body } from './styles';
 
-interface iLayout {
+interface ILayout {
   children: React.ReactNode;
 }
 
-function Layout({ children }: iLayout) {
+function Layout({ children }: ILayout) {
   return (
     <Container>
       <Wrapper>

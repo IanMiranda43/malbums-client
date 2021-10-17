@@ -1,17 +1,17 @@
-import React, { createRef, FormEvent, useEffect, useState } from 'react';
+import React, { useRef, FormEvent, useEffect, useState } from 'react';
 
 import { useAuthContext } from 'contexts/AuthContext';
-import { iUserRegister } from 'api/AuthenticationApi';
+import { IUserRegister } from 'api/AuthenticationApi';
 import getFormData from 'utils/getFormData';
 import AuthCard from 'components/AuthCard';
 import InputGroup from 'components/InputGroup';
 
 function Register() {
+  const [formError, setFormError] = useState<string>();
+  const [passwordError, setPasswordError] = useState<string>();
+  const passwordRef = useRef<HTMLInputElement>(null);
+  const confirmPasswordRef = useRef<HTMLInputElement>(null);
   const { handleCreateAccount } = useAuthContext();
-  const [formError, setFormError] = useState<string | undefined>();
-  const [passwordError, setPasswordError] = useState<string | undefined>();
-  const passwordRef = createRef<HTMLInputElement>();
-  const confirmPasswordRef = createRef<HTMLInputElement>();
 
   useEffect(() => {
     setFormError('');
@@ -25,7 +25,7 @@ function Register() {
     const confirmPasswordInput = confirmPasswordRef.current?.value;
 
     if (passwordInput === confirmPasswordInput) {
-      const userData = getFormData<iUserRegister>(e.currentTarget);
+      const userData = getFormData<IUserRegister>(e.currentTarget);
 
       setFormError('');
       setPasswordError('');

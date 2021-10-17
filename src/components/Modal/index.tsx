@@ -5,7 +5,7 @@ import { usePrivateContext } from 'contexts/PrivateContext';
 
 import { Container, Card, Title, Body } from './styles';
 
-export interface iModal {
+export interface IModal {
   children: ReactNode;
   title?: string;
 }
