@@ -39,15 +39,60 @@ function handleTokenError(response: ResponseType) {
 class AlbumsApi {
   constructor(private api = ApiConnection()) {}
 
-  async create(newAlbum: IAlbum): Promise<IApiResponse | false> {
+  async create(albumData: IAlbum) {
     const response = await this.api.post<IAlbum, ResponseType>(
       '/album',
-      newAlbum,
+      albumData,
     );
 
     handleTokenError(response);
 
-    return response.data;
+    return response;
+  }
+
+  async findById(id: string) {
+    const response = await this.api.get<never, ResponseType>(`/album/${id}`);
+
+    handleTokenError(response);
+
+    return response;
+  }
+
+  async update(albumData: IAlbum, albumId: string) {
+    const response = await this.api.put<IAlbum, ResponseType>(
+      `/album/${albumId}`,
+      albumData,
+    );
+
+    handleTokenError(response);
+
+    return response;
+  }
+
+  async delete(id: string) {
+    const response = await this.api.delete<never, ResponseType>(`/album/${id}`);
+
+    handleTokenError(response);
+
+    return response;
+  }
+
+  async list() {
+    const response = await this.api.get<never, ResponseType>('/albums/list');
+
+    handleTokenError(response);
+
+    return response;
+  }
+
+  async search(search: string) {
+    const response = await this.api.get<never, ResponseType>(
+      `/albums/find/search=${search}`,
+    );
+
+    handleTokenError(response);
+
+    return response;
   }
 }
 

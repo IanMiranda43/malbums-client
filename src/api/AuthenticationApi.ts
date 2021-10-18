@@ -44,10 +44,10 @@ function handleTokenError(response: ResponseType) {
 class AuthenticationApi {
   constructor(private api = ApiConnection()) {}
 
-  async register(userRequest: IUserRegister): Promise<IApiResponse> {
+  async register(userData: IUserRegister): Promise<IApiResponse> {
     const response = await this.api.post<IUserRegister, ResponseType>(
       '/register',
-      userRequest,
+      userData,
     );
 
     handleTokenError(response);
@@ -55,10 +55,10 @@ class AuthenticationApi {
     return response.data;
   }
 
-  async login(userRequest: IUserLogin): Promise<IApiResponse> {
+  async login(userData: IUserLogin): Promise<IApiResponse> {
     const response = await this.api.post<IUserLogin, ResponseType>(
       '/authenticate',
-      userRequest,
+      userData,
     );
 
     handleTokenError(response);
@@ -74,11 +74,11 @@ class AuthenticationApi {
     return response.data;
   }
 
-  async delete(userRequest: IUserLogin): Promise<IApiResponse> {
+  async delete(userData: IUserLogin): Promise<IApiResponse> {
     const response = await this.api.delete<IUserLogin, ResponseType>(
       '/authenticate',
       {
-        data: userRequest,
+        data: userData,
       },
     );
 
