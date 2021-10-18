@@ -10,7 +10,7 @@ interface ISuccessCard {
 
 function SuccessCard({ message, timeout }: ISuccessCard) {
   const { setModal } = usePrivateContext();
-  setTimeout(() => setModal(undefined), timeout || 2000);
+  setTimeout(() => setModal(undefined), timeout || 1500);
 
   return (
     <Container>

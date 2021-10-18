@@ -1,42 +1,44 @@
-import React, {
-  InputHTMLAttributes,
-  LabelHTMLAttributes,
-  RefObject,
-} from 'react';
+import React, { InputHTMLAttributes, RefObject, useCallback } from 'react';
 
 import Input from 'components/Input';
 
-import { Container, Label, InputError } from './styles';
+import { Container, Label, ErrorLabel } from './styles';
 
 interface IInput extends InputHTMLAttributes<HTMLInputElement> {
+  id: string;
   ref?: RefObject<HTMLInputElement>;
-}
-
-interface ILabel extends LabelHTMLAttributes<HTMLLabelElement> {
-  value?: string;
 }
 
 interface IInputGroup {
   input: IInput;
-  label?: ILabel;
-  errorLabel?: {
-    errorLabelId: string;
-    errorMessage: string;
-  };
+  label?: string;
+  errorLabel?: string;
 }
 
 function InputGroup({ input, label, errorLabel }: IInputGroup) {
+  const LabelComponent = useCallback(() => {
+    if (!label) {
+      return null;
+    }
+
+    return <Label htmlFor={input.id}>{label}</Label>;
+  }, [input, label]);
+
+  const ErrorLabelComponent = useCallback(() => {
+    if (!errorLabel) {
+      return null;
+    }
+
+    return <ErrorLabel htmlFor={input.id}>{errorLabel}</ErrorLabel>;
+  }, [input, errorLabel]);
+
   return (
     <Container>
-      {label ? <Label htmlFor={input.id}>{label.value}</Label> : null}
+      <LabelComponent />
 
       <Input {...input} required />
 
-      {errorLabel ? (
-        <InputError id={errorLabel?.errorLabelId} htmlFor={input.id}>
-          {errorLabel?.errorMessage}
-        </InputError>
-      ) : null}
+      <ErrorLabelComponent />
     </Container>
   );
 }

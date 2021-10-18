@@ -13,7 +13,7 @@ export const Label = styled.label`
   font-size: 16px;
 `;
 
-export const InputError = styled.label`
+export const ErrorLabel = styled.label`
   margin: 5px 0 10px;
   color: var(--danger);
   font-weight: bold;
