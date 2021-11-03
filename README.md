@@ -41,7 +41,7 @@ The system is configured to a better code style with development tools like `Esl
 Clone this repository by running:
 
 ```bash
-git clone git@github.com:IanMiranda43/malbums-client.git
+git clone https://github.com/IanMiranda43/malbums-client.git
 ```
 
 ### Installing the dependencies:
