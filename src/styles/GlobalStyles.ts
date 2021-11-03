@@ -37,7 +37,7 @@ export default createGlobalStyle`
     -webkit-tap-highlight-color: transparent;
     border: 0;
     background: none;
-    font-family: -apple-system, system-ui BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Ubuntu, Arial, sans-serif;
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Ubuntu, Arial, sans-serif;
   }
 
   button {
