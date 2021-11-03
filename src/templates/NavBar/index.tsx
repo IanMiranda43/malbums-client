@@ -1,5 +1,8 @@
 import React from 'react';
 
+import { useAuthContext } from 'contexts/AuthContext';
+import { usePrivateContext } from 'contexts/PrivateContext';
+
 import { useNavigationContext } from 'contexts/NavigationContext';
 
 import {
@@ -17,6 +20,8 @@ import {
 } from './styles';
 
 function NavBar() {
+  const { userData } = useAuthContext();
+  const { albumsList } = usePrivateContext();
   const { NavHomeBtn, NavListBtn, NavCreateBtn, handleSingOutClick } =
     useNavigationContext();
 
@@ -43,8 +48,8 @@ function NavBar() {
 
       <ProfileMenu>
         <ProfileData>
-          <strong>Ian Miranda</strong>
-          <span>0 CD`s</span>
+          <strong>{userData?.username}</strong>
+          <span>{albumsList?.length} CD`s</span>
         </ProfileData>
 
         <LogoutButton onClick={handleSingOutClick}>
