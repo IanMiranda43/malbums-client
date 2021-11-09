@@ -3,9 +3,17 @@
 	malbums-client
 </h1>
 
-### Access running project on Vercel [ianmiranda-malbums.vercel.app](https://ianmiranda-malbums.vercel.app/)
+<br>
+
+<div align="center">
+  <img src="https://github.com/IanMiranda43/malbums-client/blob/main/.github/assets/responsivity-example.gif">
+</div>
 
 <br>
+
+### Access running project on Vercel [ianmiranda-malbums.vercel.app](https://ianmiranda-malbums.vercel.app/)
+
+---
 
 Developed with React JS, `malbums-client` it's a music albums management system. Is developed with the mobile first principle so, it's responsively adapted to any screen size. Create your account and start to manage the albums that you like by adding and listing your albums records. Malbums means 'music albums', it's simple but sufficient for this project. 
 
